@@ -86,6 +86,16 @@ button{cursor:pointer;border:none;background:none;font:inherit;}
 .ty-note{font-size:11px;color:#b0a89a;margin-top:14px;}
 @media(max-width:480px){.hero-img{height:180px;}.wrap{padding:20px 14px 50px;}}
 </style>
+<!-- Яндекс.Метрика -->
+<script type="text/javascript">
+(function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
+m[i].l=1*new Date();
+for(var j=0;j<document.scripts.length;j++){if(document.scripts[j].src===r){return;}}
+k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)})
+(window,document,"script","https://mc.yandex.ru/metrika/tag.js","ym");
+ym(XXXXXXXX,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
+</script>
+<noscript><div><img src="https://mc.yandex.ru/watch/XXXXXXXX" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
 </head>
 <body>
 
@@ -203,16 +213,18 @@ button{cursor:pointer;border:none;background:none;font:inherit;}
     <h2>Место забронировано!</h2>
     <p>Ирина получила заявку и напишет лично.<br>Если есть вопросы — пиши сама, в любом удобном:</p>
 
-    <div class="btns-msg">
-      <a href="https://t.me/СЮДА_USERNAME" target="_blank" rel="noopener noreferrer" class="btn-msg tele">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.89 8.22l-1.97 9.28c-.14.66-.54.82-1.08.51l-3-2.21-1.45 1.39c-.16.16-.3.3-.6.3l.21-3.05 5.56-5.02c.24-.21-.05-.33-.37-.12L7.48 14.06l-2.95-.92c-.64-.2-.66-.64.13-.96L17.22 7.72c.54-.2 1 .13.67.5z"/></svg>
-        Написать в Telegram
-      </a>
-      <a href="https://max.ru/СЮДА_ССЫЛКА" target="_blank" rel="noopener noreferrer" class="btn-msg max">
-        <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 13H11V9h2v6zm0-8H11V5h2v2z"/></svg>
-        Написать в Max
-      </a>
-    </div>
+<div class="btns-msg">
+  <a href="https://t.me/СЮДА_USERNAME" target="_blank" rel="noopener noreferrer" 
+     class="btn-msg tele" onclick="trackClick('Telegram')">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.89 8.22l-1.97 9.28c-.14.66-.54.82-1.08.51l-3-2.21-1.45 1.39c-.16.16-.3.3-.6.3l.21-3.05 5.56-5.02c.24-.21-.05-.33-.37-.12L7.48 14.06l-2.95-.92c-.64-.2-.66-.64.13-.96L17.22 7.72c.54-.2 1 .13.67.5z"/></svg>
+    Написать в Telegram
+  </a>
+  <a href="https://max.ru/СЮДА_ССЫЛКА" target="_blank" rel="noopener noreferrer" 
+     class="btn-msg max" onclick="trackClick('Max')">
+    <svg viewBox="0 0 24 24" width="20" height="20" fill="#fff"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 13H11V9h2v6zm0-8H11V5h2v2z"/></svg>
+    Написать в Max
+  </a>
+</div>
 
     <div class="ty-note">🔒 Спама не будет. Только материалы марафона.</div>
   </div>
@@ -279,6 +291,14 @@ function showTY(){
   document.getElementById('sr').classList.remove('on');
   document.getElementById('sty').classList.add('on');
   window.scrollTo({top:0,behavior:'smooth'});
+}
+function trackClick(messenger) {
+  // Яндекс.Метрика — цель "messenger_click"
+  if (typeof ym !== 'undefined') {
+    ym(XXXXXXXX, 'reachGoal', 'messenger_click', {messenger: messenger});
+  }
+  // Отладка в консоли
+  console.log('Клик:', messenger);
 }
 up();
 </script>
