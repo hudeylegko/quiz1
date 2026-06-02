@@ -24,6 +24,7 @@ a{color:inherit;text-decoration:none;}
 .hdr{background:var(--white);border-bottom:1px solid var(--sand);padding:16px 24px;display:flex;align-items:center;justify-content:center;position:sticky;top:0;z-index:10;}
 .logo{font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:600;color:var(--text);letter-spacing:.02em;}
 .logo em{color:var(--rose);font-style:normal;}
+.hdr-badge{font-size:11px;font-weight:600;color:#a85850;background:#f5ede9;border-radius:50px;padding:4px 12px;margin-left:10px;white-space:nowrap;}
 
 .hero-img{width:100%;height:240px;background:linear-gradient(160deg,#f5ede9 0%,#ecddd6 100%);display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .hero-img img{width:100%;height:100%;object-fit:cover;object-position:center top;}
@@ -34,6 +35,12 @@ a{color:inherit;text-decoration:none;}
 .img-ph .ds{font-size:11px;color:var(--text-muted);max-width:200px;line-height:1.4;}
 
 .wrap{max-width:520px;margin:0 auto;padding:32px 20px 72px;}
+
+.stats-row{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;padding:14px 0 6px;margin-bottom:4px;}
+.stat-item{text-align:center;}
+.stat-num{font-size:22px;font-weight:600;color:var(--rose);font-family:'Cormorant Garamond',Georgia,serif;}
+.stat-lbl{font-size:11px;color:var(--text-muted);}
+.stat-div{width:1px;background:var(--sand);}
 
 .prog-wrap{margin-bottom:28px;}
 .prog-bar{height:3px;background:var(--sand);border-radius:10px;margin-bottom:10px;overflow:hidden;}
@@ -94,6 +101,7 @@ a{color:inherit;text-decoration:none;}
 .cbox-ava-ph svg{width:22px;height:22px;stroke:var(--rose);fill:none;stroke-width:1.5;}
 .cbox-name{font-size:14px;font-weight:700;color:var(--text);}
 .cbox-role{font-size:12px;color:var(--text-muted);margin-top:1px;}
+.cbox-stream{font-size:11px;color:var(--rose);font-weight:600;margin-top:3px;}
 .cbox-divider{height:1px;background:var(--sand);margin-bottom:20px;}
 .cbox h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-weight:600;color:var(--text);margin-bottom:4px;}
 .cbox-sub{font-size:12px;color:var(--text-muted);margin-bottom:18px;}
@@ -107,7 +115,6 @@ a{color:inherit;text-decoration:none;}
 .btn-main{width:100%;background:var(--rose);color:#fff;padding:15px;border-radius:50px;font-size:15px;font-weight:600;cursor:pointer;transition:background .18s,transform .18s,box-shadow .18s;border:none;letter-spacing:.02em;}
 .btn-main:hover{background:var(--rose-deep);transform:translateY(-1px);box-shadow:0 6px 20px rgba(168,88,80,.3);}
 
-/* disclaimer */
 .disclaimer{font-size:11px;color:var(--text-muted);line-height:1.5;margin-top:14px;padding-top:14px;border-top:1px solid var(--sand);text-align:center;}
 
 .ty{text-align:center;padding:12px 0;}
@@ -140,8 +147,14 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
 </head>
 <body>
 
+<!-- Реклама. ИП [Имя Ирины]. ERID: ЗАМЕНИТЕ_НА_ТОКЕН -->
+<div style="font-size:10px;color:#a0908a;text-align:center;padding:6px 16px 2px;line-height:1.4;">
+  Реклама. ИП [Имя Ирины]. ERID: ЗАМЕНИТЕ_НА_ТОКЕН
+</div>
+
 <div class="hdr">
   <div class="logo">Худей<em>Легко</em></div>
+  <div class="hdr-badge">63-й поток</div>
 </div>
 
 <!-- ФОТО #1: Ирина, уверенная поза, улыбка, светлый фон, 1200×480px -->
@@ -155,6 +168,24 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
 </div>
 
 <div class="wrap">
+
+  <!-- Статистика -->
+  <div class="stats-row">
+    <div class="stat-item">
+      <div class="stat-num">63</div>
+      <div class="stat-lbl">потока</div>
+    </div>
+    <div class="stat-div"></div>
+    <div class="stat-item">
+      <div class="stat-num">800+</div>
+      <div class="stat-lbl">участниц</div>
+    </div>
+    <div class="stat-div"></div>
+    <div class="stat-item">
+      <div class="stat-num">28</div>
+      <div class="stat-lbl">дней</div>
+    </div>
+  </div>
 
   <div class="prog-wrap">
     <div class="prog-bar"><div class="prog-fill" id="pf" style="width:0%"></div></div>
@@ -170,7 +201,6 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
     <div class="q-eyebrow">Шаг 1 из 3</div>
     <div class="q-text">Как ты обычно подходишь к изменению питания?</div>
     <div class="q-hint">Это поможет подобрать подходящий формат работы</div>
-    <!-- ФОТО #2: Блокнот с планом питания или тарелка с едой, тёплые тона, 800×320px -->
     <div class="q-img">
       <!-- <img src="food-plan.jpg" alt="план питания"> -->
       <div class="q-img-ph">
@@ -204,7 +234,6 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
     <div class="q-eyebrow">Шаг 2 из 3</div>
     <div class="q-text">Что чаще всего мешает придерживаться режима?</div>
     <div class="q-hint">Выбери то, что наиболее точно описывает твою ситуацию</div>
-    <!-- ФОТО #3: Красивая тарелка с едой, тёплый свет, деревянный стол, 800×320px -->
     <div class="q-img">
       <!-- <img src="food.jpg" alt="здоровое питание"> -->
       <div class="q-img-ph">
@@ -244,7 +273,6 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
     <div class="q-eyebrow">Шаг 3 из 3</div>
     <div class="q-text">Какое изменение было бы для тебя самым значимым?</div>
     <div class="q-hint">Представь, что через месяц ты смотришь на результат</div>
-    <!-- ФОТО #4: Женщина в красивой одежде, уверенная, улыбается, 800×320px. БЕЗ до/после -->
     <div class="q-img">
       <!-- <img src="confident-woman.jpg" alt="уверенная женщина"> -->
       <div class="q-img-ph">
@@ -281,7 +309,6 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
 
   <!-- РЕЗУЛЬТАТ -->
   <div class="step" id="sr">
-    <!-- ФОТО #5: Группа женщин на марафоне, активность, позитив — БЕЗ сравнения фигур, 1200×400px -->
     <div class="result-img">
       <!-- <img src="group.jpg" alt="участницы марафона"> -->
       <div class="result-img-ph">
@@ -294,12 +321,11 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
     <div style="margin-bottom:24px;">
       <div><span class="res-tag" id="res-badge">Подходящий формат найден</span></div>
       <div class="res-h" id="res-h">Для тебя есть подходящее решение</div>
-      <div class="res-p" id="res-p">Групповой марафон с Ириной — это структурированная программа питания с поддержкой на каждом этапе. Всё уже готово: меню, список продуктов, ежедневная обратная связь.</div>
+      <div class="res-p" id="res-p">Групповой марафон с Ириной — это структурированная программа питания с поддержкой на каждом этапе.</div>
     </div>
 
     <div class="cbox">
       <div class="cbox-top">
-        <!-- ФОТО #6: Аватар Ирины, крупный план, улыбка, 96×96px -->
         <!-- <div class="cbox-ava"><img src="irina-avatar.jpg" alt="Ирина"></div> -->
         <div class="cbox-ava-ph">
           <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
@@ -307,6 +333,7 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
         <div>
           <div class="cbox-name">Ирина</div>
           <div class="cbox-role">Ведущая марафона · ХудейЛегко</div>
+          <div class="cbox-stream">✦ 63-й поток · проверено участницами</div>
         </div>
       </div>
       <div class="cbox-divider"></div>
@@ -315,7 +342,7 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
       <div class="price-row">
         <div class="price-new">3 000 ₽</div>
         <div class="price-old">4 000 ₽</div>
-        <div class="price-seats">Ограниченное число мест</div>
+        <div class="price-seats">63-й поток · до 40 мест</div>
       </div>
       <input class="inp" type="text" placeholder="Твоё имя" id="inp-name">
       <input class="inp" type="tel" placeholder="Телефон или @telegram" id="inp-contact">
@@ -340,12 +367,12 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
       <p>Ирина получила заявку и напишет лично.<br>Если есть вопросы — пиши в любом удобном:</p>
       <div class="btns-msg">
         <a href="https://t.me/СЮДА_USERNAME" target="_blank" rel="noopener noreferrer"
-           class="btn-msg tele" onclick="trackClick('Telegram')">
+           class="btn-msg tele" onclick="ymGoal('messenger_click')">
           <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.89 8.22l-1.97 9.28c-.14.66-.54.82-1.08.51l-3-2.21-1.45 1.39c-.16.16-.3.3-.6.3l.21-3.05 5.56-5.02c.24-.21-.05-.33-.37-.12L7.48 14.06l-2.95-.92c-.64-.2-.66-.64.13-.96L17.22 7.72c.54-.2 1 .13.67.5z"/></svg>
           Написать в Telegram
         </a>
         <a href="https://max.ru/СЮДА_ССЫЛКА" target="_blank" rel="noopener noreferrer"
-           class="btn-msg max" onclick="trackClick('Max')">
+           class="btn-msg max" onclick="ymGoal('max_click')">
           <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 13H11V9h2v6zm0-8H11V5h2v2z"/></svg>
           Написать в Max
         </a>
@@ -364,8 +391,12 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
 </div>
 
 <script>
-var ans={q1:'',q2:''};
+var ans={q1:'',q2:'',q3:''};
 var step=1;
+
+function ymGoal(goal){
+  if(typeof ym!=='undefined') ym(109575297,'reachGoal',goal);
+}
 
 function up(){
   var p=Math.min(((step-1)/3)*100,100);
@@ -381,13 +412,14 @@ function up(){
 function nx(btn,cur,nxt,val){
   if(cur==='s1')ans.q1=val;
   if(cur==='s2')ans.q2=val;
+  if(cur==='s3')ans.q3=val;
   document.querySelectorAll('#'+cur+' .opt').forEach(function(b){b.classList.remove('sel');});
   btn.classList.add('sel');
   setTimeout(function(){
     document.getElementById(cur).classList.remove('on');
-    if(nxt==='s2')step=2;
+    if(nxt==='s2'){step=2; ymGoal('quiz_start');}
     else if(nxt==='s3')step=3;
-    else if(nxt==='sr'){step=4;setResult();}
+    else if(nxt==='sr'){step=4;setResult();ymGoal('quiz_complete');}
     up();
     document.getElementById(nxt).classList.add('on');
     window.scrollTo({top:0,behavior:'smooth'});
@@ -428,14 +460,24 @@ function setResult(){
 }
 
 function showTY(){
-  if(typeof ym!=='undefined')ym(109575297,'reachGoal','form_submit');
+  var name=document.getElementById('inp-name').value.trim();
+  var contact=document.getElementById('inp-contact').value.trim();
+  if(!name||!contact){alert('Пожалуйста, заполни имя и контакт');return;}
+  ymGoal('form_submit');
+  var BOT_TOKEN='YOUR_BOT_TOKEN';
+  var CHAT_ID='YOUR_CHAT_ID';
+  var bMap={food:'вечерние срывы',time:'нет времени',alone:'нет поддержки',confused:'непонятно что есть'};
+  var gMap={dress:'влезть в любимую одежду',weight:'результат на весах',mind:'спокойное отношение к еде',habit:'устойчивая привычка'};
+  var msg='🔔 Новый лид!\n👤 '+name+'\n📱 '+contact+'\n🚧 '+(bMap[ans.q2]||'—')+'\n🎯 '+(gMap[ans.q3]||'—');
+  if(BOT_TOKEN!=='YOUR_BOT_TOKEN'){
+    fetch('https://api.telegram.org/bot'+BOT_TOKEN+'/sendMessage',{
+      method:'POST',headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({chat_id:CHAT_ID,text:msg})
+    });
+  }
   document.getElementById('sr').classList.remove('on');
   document.getElementById('sty').classList.add('on');
   window.scrollTo({top:0,behavior:'smooth'});
-}
-
-function trackClick(messenger){
-  if(typeof ym!=='undefined')ym(109575297,'reachGoal','messenger_click',{messenger:messenger});
 }
 
 up();
