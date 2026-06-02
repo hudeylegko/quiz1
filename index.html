@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ХудейЛегко — Подбор программы</title>
+<title>ХудейЛегко — Квиз с Ириной</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -21,11 +21,12 @@ body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);
 button{cursor:pointer;border:none;background:none;font:inherit;color:inherit;}
 a{color:inherit;text-decoration:none;}
 
-.hdr{background:var(--white);border-bottom:1px solid var(--sand);padding:16px 24px;display:flex;align-items:center;justify-content:center;position:sticky;top:0;z-index:10;}
+/* ШАПКА */
+.hdr{background:var(--white);border-bottom:1px solid var(--sand);padding:14px 24px;display:flex;align-items:center;justify-content:center;position:sticky;top:0;z-index:10;}
 .logo{font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:600;color:var(--text);letter-spacing:.02em;}
 .logo em{color:var(--rose);font-style:normal;}
-.hdr-badge{font-size:11px;font-weight:600;color:#a85850;background:#f5ede9;border-radius:50px;padding:4px 12px;margin-left:10px;white-space:nowrap;}
 
+/* ФОТО ИРИНЫ — БАННЕР */
 .hero-img{width:100%;height:240px;background:linear-gradient(160deg,#f5ede9 0%,#ecddd6 100%);display:flex;align-items:center;justify-content:center;overflow:hidden;}
 .hero-img img{width:100%;height:100%;object-fit:cover;object-position:center top;}
 .img-ph{display:flex;flex-direction:column;align-items:center;gap:8px;color:var(--text-muted);text-align:center;padding:20px;}
@@ -34,15 +35,10 @@ a{color:inherit;text-decoration:none;}
 .img-ph .lb{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--rose);}
 .img-ph .ds{font-size:11px;color:var(--text-muted);max-width:200px;line-height:1.4;}
 
-.wrap{max-width:520px;margin:0 auto;padding:32px 20px 72px;}
+.wrap{max-width:520px;margin:0 auto;padding:28px 20px 72px;}
 
-.stats-row{display:flex;justify-content:center;gap:24px;flex-wrap:wrap;padding:14px 0 6px;margin-bottom:4px;}
-.stat-item{text-align:center;}
-.stat-num{font-size:22px;font-weight:600;color:var(--rose);font-family:'Cormorant Garamond',Georgia,serif;}
-.stat-lbl{font-size:11px;color:var(--text-muted);}
-.stat-div{width:1px;background:var(--sand);}
-
-.prog-wrap{margin-bottom:28px;}
+/* ПРОГРЕСС */
+.prog-wrap{margin-bottom:24px;}
 .prog-bar{height:3px;background:var(--sand);border-radius:10px;margin-bottom:10px;overflow:hidden;}
 .prog-fill{height:100%;background:linear-gradient(90deg,var(--rose),#d4958e);border-radius:10px;transition:width .5s cubic-bezier(.4,0,.2,1);}
 .prog-dots{display:flex;gap:8px;justify-content:center;}
@@ -50,63 +46,74 @@ a{color:inherit;text-decoration:none;}
 .prog-dot.done{background:var(--rose);}
 .prog-dot.active{background:var(--rose);width:24px;border-radius:4px;}
 
+/* ШАГИ */
 .step{display:none;}.step.on{display:block;animation:fadeUp .35s cubic-bezier(.4,0,.2,1);}
 @keyframes fadeUp{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 
-.q-eyebrow{font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:.1em;color:var(--rose);margin-bottom:10px;}
-.q-text{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(22px,5vw,28px);font-weight:600;line-height:1.2;color:var(--text);margin-bottom:8px;}
-.q-hint{font-size:13px;color:var(--text-muted);margin-bottom:24px;line-height:1.5;}
+/* АВАТАР ИРИНЫ В ВОПРОСЕ */
+.irina-ask{display:flex;align-items:flex-start;gap:12px;margin-bottom:22px;}
+.irina-ava{width:44px;height:44px;border-radius:50%;background:var(--rose-soft);border:2px solid var(--sand);flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;}
+.irina-ava img{width:100%;height:100%;object-fit:cover;}
+.irina-ava svg{width:20px;height:20px;stroke:var(--rose);fill:none;stroke-width:1.5;}
+.irina-bubble{background:var(--white);border:1px solid var(--sand);border-radius:0 var(--radius-md) var(--radius-md) var(--radius-md);padding:14px 16px;box-shadow:var(--shadow-sm);}
+.irina-name{font-size:11px;font-weight:700;color:var(--rose);text-transform:uppercase;letter-spacing:.06em;margin-bottom:5px;}
+.irina-q{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(19px,4.5vw,24px);font-weight:600;line-height:1.25;color:var(--text);margin-bottom:4px;}
+.irina-hint{font-size:12px;color:var(--text-muted);line-height:1.4;}
 
-.q-img{width:100%;height:160px;border-radius:var(--radius-md);background:linear-gradient(135deg,#f5ede9,#e8d8cf);overflow:hidden;margin-bottom:24px;display:flex;align-items:center;justify-content:center;}
+/* ФОТО В ВОПРОСЕ */
+.q-img{width:100%;height:150px;border-radius:var(--radius-md);background:linear-gradient(135deg,#f5ede9,#e8d8cf);overflow:hidden;margin-bottom:20px;display:flex;align-items:center;justify-content:center;}
 .q-img img{width:100%;height:100%;object-fit:cover;}
-.q-img-ph{text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;}
-.q-img-ph .ph-icon{width:40px;height:40px;border-radius:50%;background:rgba(201,115,106,.1);display:flex;align-items:center;justify-content:center;}
-.q-img-ph .ph-icon svg{width:18px;height:18px;stroke:var(--rose);fill:none;stroke-width:1.5;}
+.q-img-ph{text-align:center;display:flex;flex-direction:column;align-items:center;gap:5px;}
+.q-img-ph .ph-icon{width:36px;height:36px;border-radius:50%;background:rgba(201,115,106,.1);display:flex;align-items:center;justify-content:center;}
+.q-img-ph .ph-icon svg{width:16px;height:16px;stroke:var(--rose);fill:none;stroke-width:1.5;}
 .q-img-ph .lb{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--rose);}
-.q-img-ph .ds{font-size:10px;color:var(--text-muted);max-width:180px;line-height:1.35;}
+.q-img-ph .ds{font-size:10px;color:var(--text-muted);max-width:180px;line-height:1.3;}
 
-.opts{display:flex;flex-direction:column;gap:10px;}
-.opt{background:var(--white);border:1.5px solid var(--sand);border-radius:var(--radius-md);padding:16px 18px;text-align:left;cursor:pointer;transition:border-color .18s,background .18s,box-shadow .18s;display:flex;align-items:flex-start;gap:14px;box-shadow:var(--shadow-sm);}
+/* ВАРИАНТЫ ОТВЕТА */
+.opts{display:flex;flex-direction:column;gap:9px;}
+.opt{background:var(--white);border:1.5px solid var(--sand);border-radius:var(--radius-md);padding:14px 16px;text-align:left;cursor:pointer;transition:border-color .18s,background .18s,box-shadow .18s;display:flex;align-items:flex-start;gap:12px;box-shadow:var(--shadow-sm);}
 .opt:hover{border-color:var(--rose);background:var(--rose-pale);box-shadow:var(--shadow-md);}
 .opt.sel{border-color:var(--rose);background:var(--rose-soft);box-shadow:var(--shadow-md);}
 .opt-check{width:20px;height:20px;border-radius:50%;border:1.5px solid var(--sand-dark);flex-shrink:0;margin-top:2px;transition:all .18s;display:flex;align-items:center;justify-content:center;}
 .opt.sel .opt-check{background:var(--rose);border-color:var(--rose);}
 .opt.sel .opt-check::after{content:'';display:block;width:6px;height:6px;border-radius:50%;background:#fff;}
-.opt-txt strong{display:block;font-weight:600;font-size:14px;color:var(--text);line-height:1.3;margin-bottom:3px;}
+.opt-txt strong{display:block;font-weight:600;font-size:14px;color:var(--text);line-height:1.3;margin-bottom:2px;}
 .opt-txt span{font-size:12px;color:var(--text-muted);line-height:1.4;}
 
-.nav{display:flex;align-items:center;margin-top:20px;}
+/* НАЗАД */
+.nav{display:flex;align-items:center;margin-top:18px;}
 .btn-back{color:var(--text-muted);font-size:13px;padding:6px 0;cursor:pointer;display:flex;align-items:center;gap:6px;transition:color .15s;}
 .btn-back:hover{color:var(--text);}
 .btn-back svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:1.5;}
 
-.result-img{width:100%;height:200px;border-radius:var(--radius-lg);background:linear-gradient(135deg,#f5ede9,#e8d8cf);overflow:hidden;margin-bottom:24px;display:flex;align-items:center;justify-content:center;}
+/* РЕЗУЛЬТАТ */
+.result-img{width:100%;height:190px;border-radius:var(--radius-lg);background:linear-gradient(135deg,#f5ede9,#e8d8cf);overflow:hidden;margin-bottom:22px;display:flex;align-items:center;justify-content:center;}
 .result-img img{width:100%;height:100%;object-fit:cover;}
 .result-img-ph{text-align:center;display:flex;flex-direction:column;align-items:center;gap:8px;}
-.result-img-ph .ph-icon{width:48px;height:48px;border-radius:50%;background:rgba(201,115,106,.1);display:flex;align-items:center;justify-content:center;}
-.result-img-ph .ph-icon svg{width:22px;height:22px;stroke:var(--rose);fill:none;stroke-width:1.5;}
+.result-img-ph .ph-icon{width:44px;height:44px;border-radius:50%;background:rgba(201,115,106,.1);display:flex;align-items:center;justify-content:center;}
+.result-img-ph .ph-icon svg{width:20px;height:20px;stroke:var(--rose);fill:none;stroke-width:1.5;}
 .result-img-ph .lb{font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:.08em;color:var(--rose);}
 .result-img-ph .ds{font-size:10px;color:var(--text-muted);max-width:200px;line-height:1.35;}
 
-.res-tag{display:inline-flex;align-items:center;gap:6px;background:var(--rose-soft);border:1px solid rgba(201,115,106,.25);color:var(--rose-deep);border-radius:50px;padding:6px 14px;font-size:12px;font-weight:600;letter-spacing:.03em;margin-bottom:14px;}
+.res-tag{display:inline-flex;align-items:center;gap:6px;background:var(--rose-soft);border:1px solid rgba(201,115,106,.25);color:var(--rose-deep);border-radius:50px;padding:6px 14px;font-size:12px;font-weight:600;letter-spacing:.03em;margin-bottom:12px;}
 .res-tag::before{content:'';display:block;width:6px;height:6px;border-radius:50%;background:var(--rose);}
-.res-h{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(22px,5vw,28px);font-weight:600;line-height:1.2;margin-bottom:12px;}
-.res-p{font-size:14px;color:var(--text-mid);line-height:1.7;margin-bottom:24px;}
+.res-h{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(20px,5vw,26px);font-weight:600;line-height:1.2;margin-bottom:10px;}
+.res-p{font-size:14px;color:var(--text-mid);line-height:1.7;margin-bottom:22px;}
 
-.cbox{background:var(--white);border-radius:var(--radius-lg);padding:24px;border:1px solid var(--sand);box-shadow:var(--shadow-md);}
-.cbox-top{display:flex;align-items:center;gap:12px;margin-bottom:20px;}
+/* ФОРМА ЗАПИСИ */
+.cbox{background:var(--white);border-radius:var(--radius-lg);padding:22px;border:1px solid var(--sand);box-shadow:var(--shadow-md);}
+.cbox-top{display:flex;align-items:center;gap:12px;margin-bottom:18px;}
 .cbox-ava{width:48px;height:48px;border-radius:50%;background:var(--rose-soft);overflow:hidden;flex-shrink:0;border:2px solid var(--sand);}
 .cbox-ava img{width:100%;height:100%;object-fit:cover;}
 .cbox-ava-ph{width:48px;height:48px;border-radius:50%;background:var(--rose-soft);border:2px solid var(--sand);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
 .cbox-ava-ph svg{width:22px;height:22px;stroke:var(--rose);fill:none;stroke-width:1.5;}
 .cbox-name{font-size:14px;font-weight:700;color:var(--text);}
-.cbox-role{font-size:12px;color:var(--text-muted);margin-top:1px;}
-.cbox-stream{font-size:11px;color:var(--rose);font-weight:600;margin-top:3px;}
-.cbox-divider{height:1px;background:var(--sand);margin-bottom:20px;}
-.cbox h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-weight:600;color:var(--text);margin-bottom:4px;}
-.cbox-sub{font-size:12px;color:var(--text-muted);margin-bottom:18px;}
-.price-row{display:flex;align-items:center;gap:12px;margin-bottom:18px;flex-wrap:wrap;}
-.price-new{font-family:'Cormorant Garamond',Georgia,serif;font-size:32px;font-weight:600;color:var(--rose);}
+.cbox-says{font-size:12px;color:var(--text-muted);margin-top:1px;}
+.cbox-divider{height:1px;background:var(--sand);margin-bottom:18px;}
+.cbox h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;font-weight:600;color:var(--text);margin-bottom:4px;}
+.cbox-sub{font-size:12px;color:var(--text-muted);margin-bottom:16px;}
+.price-row{display:flex;align-items:center;gap:12px;margin-bottom:16px;flex-wrap:wrap;}
+.price-new{font-family:'Cormorant Garamond',Georgia,serif;font-size:30px;font-weight:600;color:var(--rose);}
 .price-old{font-size:14px;color:var(--text-muted);text-decoration:line-through;}
 .price-seats{font-size:11px;color:var(--text-mid);background:var(--rose-soft);border-radius:50px;padding:4px 12px;font-weight:500;margin-left:auto;}
 .inp{width:100%;border:1.5px solid var(--sand);border-radius:var(--radius-sm);padding:13px 16px;font-size:14px;font-family:'Inter',sans-serif;margin-bottom:10px;outline:none;transition:border-color .15s,box-shadow .15s;background:var(--surface);color:var(--text);}
@@ -114,26 +121,42 @@ a{color:inherit;text-decoration:none;}
 .inp:focus{border-color:var(--rose);background:var(--white);box-shadow:0 0 0 3px rgba(201,115,106,.1);}
 .btn-main{width:100%;background:var(--rose);color:#fff;padding:15px;border-radius:50px;font-size:15px;font-weight:600;cursor:pointer;transition:background .18s,transform .18s,box-shadow .18s;border:none;letter-spacing:.02em;}
 .btn-main:hover{background:var(--rose-deep);transform:translateY(-1px);box-shadow:0 6px 20px rgba(168,88,80,.3);}
+.disclaimer{font-size:11px;color:var(--text-muted);line-height:1.5;margin-top:12px;padding-top:12px;border-top:1px solid var(--sand);text-align:center;}
 
-.disclaimer{font-size:11px;color:var(--text-muted);line-height:1.5;margin-top:14px;padding-top:14px;border-top:1px solid var(--sand);text-align:center;}
+/* СТРАНИЦА СПАСИБО */
+.ty{text-align:center;padding:8px 0;}
+.ty-icon{width:68px;height:68px;border-radius:50%;background:var(--rose-soft);display:flex;align-items:center;justify-content:center;margin:0 auto 18px;}
+.ty-icon svg{width:30px;height:30px;stroke:var(--rose);fill:none;stroke-width:1.5;}
+.ty h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:600;margin-bottom:8px;color:var(--text);}
+.ty-lead{font-size:15px;color:var(--text-mid);margin-bottom:4px;line-height:1.6;}
+.ty-sub{font-size:13px;color:var(--text-muted);margin-bottom:20px;line-height:1.5;}
 
-.ty{text-align:center;padding:12px 0;}
-.ty-icon{width:72px;height:72px;border-radius:50%;background:var(--rose-soft);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;}
-.ty-icon svg{width:32px;height:32px;stroke:var(--rose);fill:none;stroke-width:1.5;}
-.ty h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:28px;font-weight:600;margin-bottom:12px;color:var(--text);}
-.ty p{font-size:14px;color:var(--text-mid);margin-bottom:28px;line-height:1.6;}
-.btns-msg{display:flex;flex-direction:column;gap:10px;max-width:340px;margin:0 auto;}
-.btn-msg{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;border-radius:50px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .18s;color:#fff;letter-spacing:.01em;}
+/* КАРТОЧКА ПОДАРКА */
+.gift-card{background:linear-gradient(135deg,#fff8f6,#fdf0ec);border:1.5px solid rgba(201,115,106,.25);border-radius:var(--radius-lg);padding:20px;margin-bottom:20px;text-align:left;}
+.gift-label{display:inline-flex;align-items:center;gap:6px;background:var(--rose);color:#fff;border-radius:50px;padding:5px 14px;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:12px;}
+.gift-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:21px;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.25;}
+.gift-list{list-style:none;margin-bottom:14px;}
+.gift-list li{font-size:13px;color:var(--text-mid);padding:4px 0 4px 20px;position:relative;line-height:1.5;}
+.gift-list li::before{content:'✓';position:absolute;left:0;color:var(--rose);font-weight:700;}
+.gift-from{display:flex;align-items:center;gap:10px;padding-top:12px;border-top:1px solid var(--sand);}
+.gift-from-ava{width:34px;height:34px;border-radius:50%;background:var(--rose-soft);border:1.5px solid var(--sand);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.gift-from-ava img{width:100%;height:100%;object-fit:cover;}
+.gift-from-ava svg{width:15px;height:15px;stroke:var(--rose);fill:none;stroke-width:1.5;}
+.gift-from-text{font-size:12px;color:var(--text-muted);line-height:1.4;}
+.gift-from-text strong{color:var(--text-mid);}
+
+.btns-msg{display:flex;flex-direction:column;gap:10px;max-width:340px;margin:0 auto 14px;}
+.btn-msg{display:flex;align-items:center;justify-content:center;gap:10px;padding:14px 20px;border-radius:50px;font-size:14px;font-weight:600;cursor:pointer;border:none;transition:all .18s;color:#fff;letter-spacing:.01em;text-decoration:none;}
 .btn-msg.tele{background:#229ED9;}.btn-msg.tele:hover{background:#1a8ac4;transform:translateY(-1px);}
 .btn-msg.max{background:#005FF9;}.btn-msg.max:hover{background:#0048cc;transform:translateY(-1px);}
 .btn-msg svg{width:18px;height:18px;fill:#fff;flex-shrink:0;}
-.ty-note{font-size:11px;color:var(--text-muted);margin-top:16px;display:flex;align-items:center;justify-content:center;gap:6px;}
+.ty-note{font-size:11px;color:var(--text-muted);margin-top:6px;display:flex;align-items:center;justify-content:center;gap:6px;}
 .ty-note svg{width:12px;height:12px;stroke:var(--text-muted);fill:none;stroke-width:2;}
 
 .page-disclaimer{font-size:10px;color:var(--text-muted);text-align:center;padding:16px 20px 32px;max-width:520px;margin:0 auto;line-height:1.5;}
-
-@media(max-width:480px){.hero-img{height:190px;}.wrap{padding:24px 16px 60px;}.cbox{padding:20px;}}
+@media(max-width:480px){.hero-img{height:190px;}.wrap{padding:20px 16px 60px;}.cbox{padding:18px;}}
 </style>
+
 <!-- Яндекс.Метрика -->
 <script type="text/javascript">
 (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
@@ -144,48 +167,25 @@ k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNo
 ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webvisor:true});
 </script>
 <noscript><div><img src="https://mc.yandex.ru/watch/109575297" style="position:absolute;left:-9999px;" alt=""/></div></noscript>
+
 </head>
 <body>
 
-<!-- Реклама. ИП [Имя Ирины]. ERID: ЗАМЕНИТЕ_НА_ТОКЕН -->
-<div style="font-size:10px;color:#a0908a;text-align:center;padding:6px 16px 2px;line-height:1.4;">
-  Реклама. ИП [Имя Ирины]. ERID: ЗАМЕНИТЕ_НА_ТОКЕН
-</div>
-
 <div class="hdr">
   <div class="logo">Худей<em>Легко</em></div>
-  <div class="hdr-badge">63-й поток</div>
 </div>
 
-<!-- ФОТО #1: Ирина, уверенная поза, улыбка, светлый фон, 1200×480px -->
+<!-- ФОТО #1: Ирина — уверенная, улыбается, светлый фон, 1200×480px -->
 <div class="hero-img">
-  <!-- <img src="irina-hero.jpg" alt="Ирина — ведущая марафона"> -->
+  <!-- <img src="irina-hero.jpg" alt="Ирина — ведущая марафона ХудейЛегко"> -->
   <div class="img-ph">
     <div class="ph-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-    <div class="lb">Фото #1 — Ирина (главный баннер)</div>
-    <div class="ds">Уверенная поза · улыбка · светлый фон · 1200×480px</div>
+    <div class="lb">Фото #1 — Ирина, главный баннер</div>
+    <div class="ds">Уверенная · улыбка · светлый фон · 1200×480px</div>
   </div>
 </div>
 
 <div class="wrap">
-
-  <!-- Статистика -->
-  <div class="stats-row">
-    <div class="stat-item">
-      <div class="stat-num">63</div>
-      <div class="stat-lbl">потока</div>
-    </div>
-    <div class="stat-div"></div>
-    <div class="stat-item">
-      <div class="stat-num">800+</div>
-      <div class="stat-lbl">участниц</div>
-    </div>
-    <div class="stat-div"></div>
-    <div class="stat-item">
-      <div class="stat-num">28</div>
-      <div class="stat-lbl">дней</div>
-    </div>
-  </div>
 
   <div class="prog-wrap">
     <div class="prog-bar"><div class="prog-fill" id="pf" style="width:0%"></div></div>
@@ -198,25 +198,34 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
 
   <!-- ШАГ 1 -->
   <div class="step on" id="s1">
-    <div class="q-eyebrow">Шаг 1 из 3</div>
-    <div class="q-text">Как ты обычно подходишь к изменению питания?</div>
-    <div class="q-hint">Это поможет подобрать подходящий формат работы</div>
+    <div class="irina-ask">
+      <div class="irina-ava">
+        <!-- <img src="irina-avatar.jpg" alt="Ирина"> -->
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div class="irina-bubble">
+        <div class="irina-name">Ирина</div>
+        <div class="irina-q">Как ты обычно подходишь к изменению питания?</div>
+        <div class="irina-hint">Расскажи — я подберу формат, который подойдёт именно тебе</div>
+      </div>
+    </div>
+    <!-- ФОТО #2: Блокнот с планом питания или тарелка, тёплые тона, 800×320px -->
     <div class="q-img">
       <!-- <img src="food-plan.jpg" alt="план питания"> -->
       <div class="q-img-ph">
         <div class="ph-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/></svg></div>
         <div class="lb">Фото #2 — план питания или тарелка</div>
-        <div class="ds">Тёплые тона · уютная атмосфера · 800×320px</div>
+        <div class="ds">Тёплые тона · уют · 800×320px</div>
       </div>
     </div>
     <div class="opts">
       <button class="opt" onclick="nx(this,'s1','s2','strict')">
         <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Начинаю строго — потом становится сложнее</strong><span>Держусь какое-то время, но не всегда до конца</span></div>
+        <div class="opt-txt"><strong>Начинаю строго — потом срываюсь</strong><span>Держусь какое-то время, но не всегда до конца</span></div>
       </button>
       <button class="opt" onclick="nx(this,'s1','s2','couple')">
         <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Делала несколько попыток — без устойчивого результата</strong><span>Что-то менялось, но закрепить не получалось</span></div>
+        <div class="opt-txt"><strong>Пробовала несколько раз — без результата</strong><span>Что-то менялось, но закрепить не получалось</span></div>
       </button>
       <button class="opt" onclick="nx(this,'s1','s2','first')">
         <div class="opt-check"></div>
@@ -224,28 +233,37 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
       </button>
       <button class="opt" onclick="nx(this,'s1','s2','returned')">
         <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Был хороший результат, но потом вернулась к прежнему</strong><span>Хочу выстроить устойчивую привычку</span></div>
+        <div class="opt-txt"><strong>Был хороший результат, но я вернулась к прежнему</strong><span>Хочу выстроить устойчивую привычку</span></div>
       </button>
     </div>
   </div>
 
   <!-- ШАГ 2 -->
   <div class="step" id="s2">
-    <div class="q-eyebrow">Шаг 2 из 3</div>
-    <div class="q-text">Что чаще всего мешает придерживаться режима?</div>
-    <div class="q-hint">Выбери то, что наиболее точно описывает твою ситуацию</div>
+    <div class="irina-ask">
+      <div class="irina-ava">
+        <!-- <img src="irina-avatar.jpg" alt="Ирина"> -->
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div class="irina-bubble">
+        <div class="irina-name">Ирина</div>
+        <div class="irina-q">Что чаще всего мешает придерживаться режима?</div>
+        <div class="irina-hint">Это самый важный вопрос — честно, одна причина</div>
+      </div>
+    </div>
+    <!-- ФОТО #3: Красивая тарелка с едой, тёплый свет, 800×320px -->
     <div class="q-img">
       <!-- <img src="food.jpg" alt="здоровое питание"> -->
       <div class="q-img-ph">
         <div class="ph-icon"><svg viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"/><path d="M2 8h16v9a4 4 0 0 1-4 4H6a4 4 0 0 1-4-4V8z"/><line x1="6" y1="1" x2="6" y2="4"/><line x1="10" y1="1" x2="10" y2="4"/><line x1="14" y1="1" x2="14" y2="4"/></svg></div>
-        <div class="lb">Фото #3 — здоровая красивая еда</div>
+        <div class="lb">Фото #3 — красивая еда</div>
         <div class="ds">Аппетитно · тёплый свет · деревянный стол · 800×320px</div>
       </div>
     </div>
     <div class="opts">
       <button class="opt" onclick="nx(this,'s2','s3','food')">
         <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Сложно контролировать питание по вечерам</strong><span>Днём держусь, а к вечеру хочется лишнего</span></div>
+        <div class="opt-txt"><strong>Срываюсь вечером — не хватает сил держаться</strong><span>Днём всё хорошо, но к вечеру тянет на лишнее</span></div>
       </button>
       <button class="opt" onclick="nx(this,'s2','s3','time')">
         <div class="opt-check"></div>
@@ -253,11 +271,11 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
       </button>
       <button class="opt" onclick="nx(this,'s2','s3','alone')">
         <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Трудно поддерживать мотивацию в одиночку</strong><span>Без поддержки и окружения быстро теряю настрой</span></div>
+        <div class="opt-txt"><strong>Трудно без поддержки — в одиночку теряю настрой</strong><span>Когда нет окружения, мотивация быстро гаснет</span></div>
       </button>
       <button class="opt" onclick="nx(this,'s2','s3','confused')">
         <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Много противоречивой информации о питании</strong><span>Непонятно, что реально работает именно для меня</span></div>
+        <div class="opt-txt"><strong>Не понимаю, что работает именно для меня</strong><span>Столько советов — непонятно, с чего начать</span></div>
       </button>
     </div>
     <div class="nav">
@@ -270,9 +288,18 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
 
   <!-- ШАГ 3 -->
   <div class="step" id="s3">
-    <div class="q-eyebrow">Шаг 3 из 3</div>
-    <div class="q-text">Какое изменение было бы для тебя самым значимым?</div>
-    <div class="q-hint">Представь, что через месяц ты смотришь на результат</div>
+    <div class="irina-ask">
+      <div class="irina-ava">
+        <!-- <img src="irina-avatar.jpg" alt="Ирина"> -->
+        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      </div>
+      <div class="irina-bubble">
+        <div class="irina-name">Ирина</div>
+        <div class="irina-q">Какое изменение было бы для тебя самым значимым?</div>
+        <div class="irina-hint">Представь — через месяц ты смотришь на результат</div>
+      </div>
+    </div>
+    <!-- ФОТО #4: Женщина в красивой одежде, уверенная, улыбается, 800×320px (БЕЗ до/после) -->
     <div class="q-img">
       <!-- <img src="confident-woman.jpg" alt="уверенная женщина"> -->
       <div class="q-img-ph">
@@ -284,19 +311,19 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
     <div class="opts">
       <button class="opt" onclick="nx(this,'s3','sr','dress')">
         <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Снова носить одежду, которую давно отложила</strong><span>Та вещь, которая ждёт в шкафу</span></div>
+        <div class="opt-txt"><strong>Снова ношу одежду, которую давно отложила</strong><span>Та самая вещь, которая ждёт в шкафу</span></div>
       </button>
       <button class="opt" onclick="nx(this,'s3','sr','weight')">
         <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Увидеть заметный результат на весах</strong><span>Зафиксировать реальные изменения</span></div>
+        <div class="opt-txt"><strong>Вижу реальный результат на весах</strong><span>Замеры, цифры — конкретные изменения</span></div>
       </button>
       <button class="opt" onclick="nx(this,'s3','sr','mind')">
         <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Перестать постоянно думать о еде и ограничениях</strong><span>Спокойное, комфортное отношение к питанию</span></div>
+        <div class="opt-txt"><strong>Перестала постоянно думать о еде и запретах</strong><span>Спокойное, комфортное отношение к питанию</span></div>
       </button>
       <button class="opt" onclick="nx(this,'s3','sr','habit')">
         <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Сформировать привычку и сохранить результат</strong><span>Не разовый эффект, а устойчивый образ жизни</span></div>
+        <div class="opt-txt"><strong>Выстроила привычку и сохраняю результат</strong><span>Не разовый эффект, а устойчивый образ жизни</span></div>
       </button>
     </div>
     <div class="nav">
@@ -309,31 +336,32 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
 
   <!-- РЕЗУЛЬТАТ -->
   <div class="step" id="sr">
+    <!-- ФОТО #5: Группа женщин на марафоне, позитив, активность, 1200×400px (БЕЗ сравнения фигур) -->
     <div class="result-img">
       <!-- <img src="group.jpg" alt="участницы марафона"> -->
       <div class="result-img-ph">
         <div class="ph-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
         <div class="lb">Фото #5 — участницы марафона</div>
-        <div class="ds">Группа · активность · позитив · БЕЗ сравнения фигур · 1200×400px</div>
+        <div class="ds">Группа · позитив · без сравнения фигур · 1200×400px</div>
       </div>
     </div>
 
-    <div style="margin-bottom:24px;">
+    <div style="margin-bottom:22px;">
       <div><span class="res-tag" id="res-badge">Подходящий формат найден</span></div>
       <div class="res-h" id="res-h">Для тебя есть подходящее решение</div>
-      <div class="res-p" id="res-p">Групповой марафон с Ириной — это структурированная программа питания с поддержкой на каждом этапе.</div>
+      <div class="res-p" id="res-p">Марафон с Ириной — это структурированная программа питания с поддержкой на каждом этапе. Всё уже готово: меню, список продуктов, ежедневная обратная связь.</div>
     </div>
 
     <div class="cbox">
       <div class="cbox-top">
+        <!-- ФОТО #6: Аватар Ирины, крупный план, улыбка, 96×96px -->
         <!-- <div class="cbox-ava"><img src="irina-avatar.jpg" alt="Ирина"></div> -->
         <div class="cbox-ava-ph">
           <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
         </div>
         <div>
           <div class="cbox-name">Ирина</div>
-          <div class="cbox-role">Ведущая марафона · ХудейЛегко</div>
-          <div class="cbox-stream">✦ 63-й поток · проверено участницами</div>
+          <div class="cbox-says">Жду тебя в своей группе ✨</div>
         </div>
       </div>
       <div class="cbox-divider"></div>
@@ -342,11 +370,11 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
       <div class="price-row">
         <div class="price-new">3 000 ₽</div>
         <div class="price-old">4 000 ₽</div>
-        <div class="price-seats">63-й поток · до 40 мест</div>
+        <div class="price-seats">Осталось мест мало</div>
       </div>
       <input class="inp" type="text" placeholder="Твоё имя" id="inp-name">
       <input class="inp" type="tel" placeholder="Телефон или @telegram" id="inp-contact">
-      <button class="btn-main" onclick="showTY()">Хочу в группу</button>
+      <button class="btn-main" onclick="showTY()">Хочу в группу →</button>
       <div class="disclaimer">Результат индивидуален и зависит от образа жизни и исходных данных. Программа не является медицинской услугой.</div>
     </div>
     <div class="nav" style="justify-content:center;">
@@ -357,29 +385,50 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
     </div>
   </div>
 
-  <!-- СПАСИБО -->
+  <!-- СТРАНИЦА СПАСИБО -->
   <div class="step" id="sty">
     <div class="ty">
       <div class="ty-icon">
         <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
       </div>
-      <h2>Заявка принята</h2>
-      <p>Ирина получила заявку и напишет лично.<br>Если есть вопросы — пиши в любом удобном:</p>
+      <h2>Заявка принята!</h2>
+      <p class="ty-lead">Ирина получила заявку и напишет лично до старта.</p>
+      <p class="ty-sub">Пока ждёшь — держи подарок от Ирины&nbsp;🎁</p>
+
+      <!-- Карточка подарка -->
+      <div class="gift-card">
+        <div class="gift-label">🎁 Подарок для тебя</div>
+        <div class="gift-title">Меню на 3 дня от Ирины — бесплатно</div>
+        <ul class="gift-list">
+          <li>Завтрак, обед и ужин — уже готово</li>
+          <li>Простые продукты, 30 минут на готовку</li>
+          <li>Без голода и жёстких запретов</li>
+        </ul>
+        <div class="gift-from">
+          <div class="gift-from-ava">
+            <!-- <img src="irina-avatar.jpg" alt="Ирина"> -->
+            <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+          </div>
+          <div class="gift-from-text"><strong>Ирина</strong> пришлёт меню лично — выбери удобный мессенджер&nbsp;👇</div>
+        </div>
+      </div>
+
       <div class="btns-msg">
         <a href="https://t.me/СЮДА_USERNAME" target="_blank" rel="noopener noreferrer"
-           class="btn-msg tele" onclick="ymGoal('messenger_click')">
-          <svg viewBox="0 0 24 24"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.89 8.22l-1.97 9.28c-.14.66-.54.82-1.08.51l-3-2.21-1.45 1.39c-.16.16-.3.3-.6.3l.21-3.05 5.56-5.02c.24-.21-.05-.33-.37-.12L7.48 14.06l-2.95-.92c-.64-.2-.66-.64.13-.96L17.22 7.72c.54-.2 1 .13.67.5z"/></svg>
-          Написать в Telegram
+           class="btn-msg tele" onclick="trackClickTG()">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.89 8.22l-1.97 9.28c-.14.66-.54.82-1.08.51l-3-2.21-1.45 1.39c-.16.16-.3.3-.6.3l.21-3.05 5.56-5.02c.24-.21-.05-.33-.37-.12L7.48 14.06l-2.95-.92c-.64-.2-.66-.64.13-.96L17.22 7.72c.54-.2 1 .13.67.5z"/></svg>
+          Получить в Telegram
         </a>
-        <a href="https://max.ru/СЮДА_ССЫЛКА" target="_blank" rel="noopener noreferrer"
-           class="btn-msg max" onclick="ymGoal('max_click')">
-          <svg viewBox="0 0 24 24"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 13H11V9h2v6zm0-8H11V5h2v2z"/></svg>
-          Написать в Max
+        <a href="https://vk.me/СЮДА_ССЫЛКА" target="_blank" rel="noopener noreferrer"
+           class="btn-msg max" onclick="trackClickMax()">
+          <svg viewBox="0 0 24 24" width="18" height="18" fill="#fff"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm4.5 7h-2.25v5.25H10.5V9H8.25V7.5h8.25V9z"/></svg>
+          Получить в MAX
         </a>
       </div>
+
       <div class="ty-note">
         <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        Спама не будет. Только материалы программы.
+        Спама не будет. Только меню и материалы программы.
       </div>
     </div>
   </div>
@@ -391,12 +440,17 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
 </div>
 
 <script>
-var ans={q1:'',q2:'',q3:''};
+var ans={q1:'',q2:''};
 var step=1;
 
-function ymGoal(goal){
-  if(typeof ym!=='undefined') ym(109575297,'reachGoal',goal);
-}
+// UTM из URL
+var utm=(function(){
+  var p=new URLSearchParams(window.location.search);
+  var keys=['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
+  var parts=[];
+  keys.forEach(function(k){if(p.get(k))parts.push(k+'='+p.get(k));});
+  return parts.length?parts.join(' | '):'прямой заход';
+})();
 
 function up(){
   var p=Math.min(((step-1)/3)*100,100);
@@ -412,14 +466,13 @@ function up(){
 function nx(btn,cur,nxt,val){
   if(cur==='s1')ans.q1=val;
   if(cur==='s2')ans.q2=val;
-  if(cur==='s3')ans.q3=val;
   document.querySelectorAll('#'+cur+' .opt').forEach(function(b){b.classList.remove('sel');});
   btn.classList.add('sel');
   setTimeout(function(){
     document.getElementById(cur).classList.remove('on');
-    if(nxt==='s2'){step=2; ymGoal('quiz_start');}
+    if(nxt==='s2')step=2;
     else if(nxt==='s3')step=3;
-    else if(nxt==='sr'){step=4;setResult();ymGoal('quiz_complete');}
+    else if(nxt==='sr'){step=4;setResult();}
     up();
     document.getElementById(nxt).classList.add('on');
     window.scrollTo({top:0,behavior:'smooth'});
@@ -441,46 +494,75 @@ function setResult(){
   var h=document.getElementById('res-h');
   var p=document.getElementById('res-p');
   if(ans.q2==='food'){
-    b.textContent='Важен режим и структура питания';
-    h.textContent='Вечерние привычки меняются через систему, не силу воли';
-    p.textContent='Когда в течение дня нет чёткого плана питания — к вечеру организм сам ищет компенсацию. В группе Ирины каждый день есть готовое меню: это убирает постоянные выборы и снижает нагрузку на самоконтроль.';
+    b.textContent='Тебе нужна структура, а не сила воли';
+    h.textContent='Вечерние срывы — это не слабость, это отсутствие плана';
+    p.textContent='Когда нет чёткого меню на день, к вечеру организм сам ищет компенсацию. В группе Ирины каждый день есть готовый план: это убирает постоянный выбор и снижает нагрузку на самоконтроль.';
   } else if(ans.q2==='time'){
-    b.textContent='Важна простота и готовое решение';
+    b.textContent='Тебе нужно готовое решение, без лишних усилий';
     h.textContent='Когда всё уже готово — питание перестаёт отнимать время';
-    p.textContent='Меню на каждый день, список продуктов на неделю — всё в одном месте. Не нужно ничего придумывать или считать. Формат марафона устроен так, чтобы встраиваться в занятой ритм жизни.';
+    p.textContent='Меню на каждый день, список продуктов на неделю — всё в одном месте. Не нужно ничего придумывать или считать. Марафон устроен так, чтобы встраиваться в занятой ритм жизни.';
   } else if(ans.q2==='alone'){
-    b.textContent='Важна поддержка и окружение';
-    h.textContent='Рядом с теми, кто идёт к той же цели — проще двигаться';
-    p.textContent='В закрытой группе Ирины собираются женщины с похожим запросом. Общий чат, ежедневная обратная связь и живое присутствие ведущей создают среду, в которой продолжать становится естественным.';
+    b.textContent='Тебе нужна поддержка — ты не одна';
+    h.textContent='Рядом с теми, кто идёт к той же цели — двигаться легче';
+    p.textContent='В закрытой группе Ирины собираются женщины с похожим запросом. Общий чат, ежедневная обратная связь и живое присутствие Ирины создают среду, в которой продолжать становится естественным.';
   } else {
-    b.textContent='Важна ясность и конкретный план';
-    h.textContent='Один понятный план лучше десяти противоречивых советов';
-    p.textContent='28 дней — чёткая структура: что есть, в каком количестве, как выстроить день. Ирина убрала из программы всё лишнее и оставила только то, что работает на практике без жёстких ограничений.';
+    b.textContent='Тебе нужен конкретный план, а не советы';
+    h.textContent='Когда есть система — не нужна сила воли';
+    p.textContent='В марафоне Ирины всё структурировано: что есть, когда, сколько. Не нужно разбираться в противоречивых советах — есть конкретный план на 28 дней, который уже сработал для десятков участниц.';
   }
+  if(typeof ym!=='undefined') ym(109575297,'reachGoal','quiz_complete');
 }
 
 function showTY(){
   var name=document.getElementById('inp-name').value.trim();
   var contact=document.getElementById('inp-contact').value.trim();
   if(!name||!contact){alert('Пожалуйста, заполни имя и контакт');return;}
-  ymGoal('form_submit');
+
+  if(typeof ym!=='undefined') ym(109575297,'reachGoal','form_submit');
+
   var BOT_TOKEN='YOUR_BOT_TOKEN';
   var CHAT_ID='YOUR_CHAT_ID';
-  var bMap={food:'вечерние срывы',time:'нет времени',alone:'нет поддержки',confused:'непонятно что есть'};
-  var gMap={dress:'влезть в любимую одежду',weight:'результат на весах',mind:'спокойное отношение к еде',habit:'устойчивая привычка'};
-  var msg='🔔 Новый лид!\n👤 '+name+'\n📱 '+contact+'\n🚧 '+(bMap[ans.q2]||'—')+'\n🎯 '+(gMap[ans.q3]||'—');
+  var barrierMap={food:'вечерние срывы',time:'нет времени',alone:'нет поддержки',confused:'непонятно с чего начать'};
+  var approachMap={strict:'начинает строго — срывается',couple:'несколько попыток',first:'впервые серьёзно',returned:'возвращается к результату'};
+  var msg='🔔 Новая заявка!\n'
+    +'👤 Имя: '+name+'\n'
+    +'📱 Контакт: '+contact+'\n'
+    +'🚧 Барьер: '+(barrierMap[ans.q2]||'—')+'\n'
+    +'📋 Подход к питанию: '+(approachMap[ans.q1]||'—')+'\n'
+    +'📊 UTM: '+utm;
+
   if(BOT_TOKEN!=='YOUR_BOT_TOKEN'){
     fetch('https://api.telegram.org/bot'+BOT_TOKEN+'/sendMessage',{
-      method:'POST',headers:{'Content-Type':'application/json'},
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
       body:JSON.stringify({chat_id:CHAT_ID,text:msg})
     });
   }
+
   document.getElementById('sr').classList.remove('on');
   document.getElementById('sty').classList.add('on');
   window.scrollTo({top:0,behavior:'smooth'});
 }
 
-up();
+function trackClickTG(){
+  if(typeof ym!=='undefined') ym(109575297,'reachGoal','messenger_click');
+}
+
+function trackClickMax(){
+  if(typeof ym!=='undefined') ym(109575297,'reachGoal','max_click');
+}
+
+// quiz_start — при первом ответе на шаг 1
+(function(){
+  var fired=false;
+  document.addEventListener('click',function(e){
+    if(fired)return;
+    if(e.target.closest('#s1 .opt')){
+      fired=true;
+      if(typeof ym!=='undefined') ym(109575297,'reachGoal','quiz_start');
+    }
+  });
+})();
 </script>
 </body>
 </html>
