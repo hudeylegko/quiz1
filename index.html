@@ -3,12 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ХудейЛегко — Квиз с Ириной</title>
+<title>ХудейЛегко — Узнай свой тип питания</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-
-<!-- Яндекс.Метрика -->
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,400&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <script type="text/javascript">
 (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
 m[i].l=1*new Date();
@@ -22,454 +20,471 @@ ym(109575297,'init',{clickmap:true,trackLinks:true,accurateTrackBounce:true,webv
 <style>
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
 :root{
-  --rose:#c9736a;--rose-deep:#a85850;--rose-soft:#f5ede9;--rose-pale:#fdf8f6;
-  --sand:#e8ddd5;--sand-dark:#d4c5bb;
-  --text:#2d2320;--text-mid:#6b5550;--text-muted:#a0908a;
-  --white:#ffffff;--surface:#fefaf8;
-  --r-sm:10px;--r-md:16px;--r-lg:24px;
-  --sh-sm:0 2px 8px rgba(100,60,50,.07);--sh-md:0 6px 24px rgba(100,60,50,.10);
-  --hdr:52px;
-  --banner:200px;
-  --prog:40px;
+  --rose:#c9736a;--rose-d:#a85850;--rose-soft:#f5ede9;--rose-pale:#fdf8f6;
+  --sand:#e8ddd5;--sand-d:#d4c5bb;
+  --tx:#2d2320;--tx-mid:#6b5550;--tx-muted:#a0908a;--tx-faint:#c8b8b2;
+  --white:#ffffff;--bg:#fefaf8;
+  --r-sm:10px;--r-md:16px;--r-lg:24px;--r-xl:32px;
+  --sh-sm:0 2px 8px rgba(100,60,50,.07);
+  --sh-md:0 6px 24px rgba(100,60,50,.10);
+  --sh-lg:0 16px 40px rgba(100,60,50,.13);
 }
-
-/* === BASE === */
 html,body{height:100%;overflow:hidden;}
-body{font-family:'Inter',sans-serif;background:var(--surface);color:var(--text);font-size:16px;line-height:1.6;}
+body{font-family:'Inter',sans-serif;background:var(--bg);color:var(--tx);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased;}
 button{cursor:pointer;border:none;background:none;font:inherit;color:inherit;}
-a{color:inherit;text-decoration:none;}
+img{display:block;max-width:100%;height:auto;}
 
-/* === ШАПКА === */
-.hdr{
-  position:fixed;top:0;left:0;right:0;z-index:20;
-  height:var(--hdr);
-  background:var(--white);border-bottom:1px solid var(--sand);
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 20px;
-}
-.logo{font-family:'Cormorant Garamond',Georgia,serif;font-size:22px;font-weight:600;color:var(--text);letter-spacing:.02em;}
-.logo em{color:var(--rose);font-style:normal;}
-.erid{font-size:10px;color:var(--text-muted);letter-spacing:.03em;}
+/* ─── SCROLL WRAPPER ─── */
+.screen{position:fixed;inset:0;overflow-y:auto;-webkit-overflow-scrolling:touch;}
+.inner{max-width:520px;margin:0 auto;padding:0 0 60px;}
 
-/* === БАННЕР — ОДНО ФОТО НА ВСЕ ШАГИ === */
-.banner{
-  position:fixed;top:var(--hdr);left:0;right:0;z-index:10;
-  height:var(--banner);
-  background:linear-gradient(160deg,#f5ede9,#e8d4cc);
-  overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
-}
-.banner img{width:100%;height:100%;object-fit:cover;object-position:center top;}
-.banner-ph{display:flex;flex-direction:column;align-items:center;gap:6px;text-align:center;}
-.banner-ph .ph-icon{width:44px;height:44px;border-radius:50%;background:rgba(201,115,106,.12);display:flex;align-items:center;justify-content:center;}
-.banner-ph .ph-icon svg{width:20px;height:20px;stroke:var(--rose);fill:none;stroke-width:1.5;}
-.banner-ph .lb{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--rose);}
-.banner-ph .ds{font-size:10px;color:var(--text-muted);max-width:200px;line-height:1.3;}
-
-/* === КОНТЕНТ — ПРОКРУЧИВАЕТСЯ ПОД ФИКСИРОВАННЫМ БАННЕРОМ === */
-.content{
-  position:fixed;
-  top:calc(var(--hdr) + var(--banner));
-  left:0;right:0;bottom:0;
-  overflow-y:auto;
-  -webkit-overflow-scrolling:touch;
-  background:var(--surface);
-}
-.content-inner{
-  max-width:520px;
-  margin:0 auto;
-  padding:16px 20px 48px;
-  min-height:100%;
-}
-
-/* === ПРОГРЕСС === */
-.prog-wrap{margin-bottom:20px;}
-.prog-bar{height:3px;background:var(--sand);border-radius:10px;margin-bottom:8px;overflow:hidden;}
-.prog-fill{height:100%;background:linear-gradient(90deg,var(--rose),#d4958e);border-radius:10px;transition:width .5s cubic-bezier(.4,0,.2,1);}
-.prog-dots{display:flex;gap:8px;justify-content:center;}
-.prog-dot{width:8px;height:8px;border-radius:50%;background:var(--sand);transition:all .3s;}
-.prog-dot.done{background:var(--rose);}
-.prog-dot.active{background:var(--rose);width:24px;border-radius:4px;}
-
-/* === ШАГИ === */
+/* ─── STEP SYSTEM ─── */
 .step{display:none;}
-.step.on{display:block;animation:fadeUp .3s cubic-bezier(.4,0,.2,1);}
-@keyframes fadeUp{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+.step.on{display:block;animation:fu .32s cubic-bezier(.4,0,.2,1);}
+@keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
 
-/* === ПУЗЫРЬ ИРИНЫ === */
-.irina-ask{display:flex;align-items:flex-start;gap:12px;margin-bottom:18px;}
-.irina-ava{
-  width:40px;height:40px;border-radius:50%;
-  background:var(--rose-soft);border:2px solid var(--sand);
-  flex-shrink:0;overflow:hidden;
-  display:flex;align-items:center;justify-content:center;
-}
+/* ═══════════════════════════════════════════
+   ШАГ 0 — ПРИВЕТСТВЕННЫЙ ЭКРАН (ОФФЕР)
+═══════════════════════════════════════════ */
+.intro{background:var(--white);}
+
+/* HERO — фото Ирины */
+.hero{width:100%;height:280px;background:linear-gradient(160deg,#f0e0da,#e8d0c6);overflow:hidden;position:relative;display:flex;align-items:flex-end;justify-content:flex-start;}
+.hero img{width:100%;height:100%;object-fit:cover;object-position:center top;}
+.hero-ph{width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:8px;color:var(--tx-muted);}
+.hero-ph .ph-icon{width:52px;height:52px;border-radius:50%;background:rgba(201,115,106,.12);display:flex;align-items:center;justify-content:center;}
+.hero-ph .ph-icon svg{width:24px;height:24px;stroke:var(--rose);fill:none;stroke-width:1.5;}
+.hero-ph .lb{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--rose);}
+.hero-ph .ds{font-size:11px;color:var(--tx-muted);text-align:center;max-width:200px;line-height:1.35;}
+/* Плашка поверх фото */
+.hero-badge{position:absolute;bottom:16px;left:16px;background:rgba(255,255,255,.92);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);border-radius:50px;padding:7px 14px;display:flex;align-items:center;gap:6px;}
+.hero-badge .dot{width:6px;height:6px;border-radius:50%;background:#22c55e;flex-shrink:0;box-shadow:0 0 0 2px rgba(34,197,94,.3);}
+.hero-badge .bt{font-size:12px;font-weight:600;color:var(--tx);}
+
+/* INTRO BODY */
+.intro-body{padding:24px 20px 28px;}
+.erid-line{font-size:10px;color:var(--tx-muted);margin-bottom:14px;letter-spacing:.03em;}
+
+/* Имя */
+.intro-name{display:flex;align-items:center;gap:10px;margin-bottom:18px;}
+.intro-ava{width:48px;height:48px;border-radius:50%;border:2px solid var(--sand);background:var(--rose-soft);overflow:hidden;flex-shrink:0;display:flex;align-items:center;justify-content:center;}
+.intro-ava img{width:100%;height:100%;object-fit:cover;}
+.intro-ava svg{width:20px;height:20px;stroke:var(--rose);fill:none;stroke-width:1.5;}
+.intro-who strong{display:block;font-size:15px;font-weight:700;color:var(--tx);}
+.intro-who span{font-size:12px;color:var(--tx-muted);}
+
+/* Микро-история */
+.intro-story{font-size:14px;color:var(--tx-mid);line-height:1.7;margin-bottom:20px;}
+.intro-story em{font-style:normal;font-weight:600;color:var(--tx);}
+
+/* ПОДАРОК */
+.gift-teaser{background:linear-gradient(135deg,#fff8f5,#fdf0ec);border:1.5px solid rgba(201,115,106,.2);border-radius:var(--r-lg);padding:18px 18px 16px;margin-bottom:22px;}
+.gt-top{display:flex;align-items:center;gap:10px;margin-bottom:12px;}
+.gt-icon{font-size:28px;line-height:1;}
+.gt-label{font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--rose);margin-bottom:2px;}
+.gt-name{font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;font-weight:600;color:var(--tx);line-height:1.2;}
+.gt-desc{font-size:13px;color:var(--tx-mid);line-height:1.6;margin-bottom:12px;}
+.gt-items{display:flex;flex-direction:column;gap:5px;}
+.gt-item{display:flex;align-items:flex-start;gap:8px;font-size:12px;color:var(--tx-mid);line-height:1.4;}
+.gt-item::before{content:'✓';color:var(--rose);font-weight:700;flex-shrink:0;margin-top:1px;}
+
+/* CTA */
+.btn-cta{width:100%;background:var(--rose);color:#fff;padding:15px;border-radius:50px;font-size:16px;font-weight:700;letter-spacing:.02em;cursor:pointer;transition:background .18s,transform .18s,box-shadow .18s;border:none;display:flex;align-items:center;justify-content:center;gap:8px;}
+.btn-cta:hover{background:var(--rose-d);transform:translateY(-1px);box-shadow:0 8px 24px rgba(168,88,80,.28);}
+.btn-cta svg{width:18px;height:18px;fill:none;stroke:#fff;stroke-width:2;flex-shrink:0;}
+.intro-sub{font-size:12px;color:var(--tx-muted);text-align:center;margin-top:10px;line-height:1.5;}
+
+/* ═══════════════════════════════════════════
+   ШАПКА КВИЗА (показывается на шагах 1-3)
+═══════════════════════════════════════════ */
+.quiz-hdr{position:sticky;top:0;z-index:10;background:var(--white);border-bottom:1px solid var(--sand);padding:12px 20px;display:none;}
+.quiz-hdr.on{display:flex;align-items:center;justify-content:space-between;gap:12px;}
+.qh-logo{font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;font-weight:600;color:var(--tx);}
+.qh-logo em{color:var(--rose);font-style:normal;}
+.qh-prog{flex:1;display:flex;flex-direction:column;align-items:flex-end;gap:5px;}
+.prog-bar{width:100%;max-width:140px;height:3px;background:var(--sand);border-radius:10px;overflow:hidden;}
+.prog-fill{height:100%;background:linear-gradient(90deg,var(--rose),#d4958e);border-radius:10px;transition:width .5s cubic-bezier(.4,0,.2,1);}
+.prog-label{font-size:10px;color:var(--tx-muted);font-weight:500;}
+
+/* ═══════════════════════════════════════════
+   ВОПРОСЫ
+═══════════════════════════════════════════ */
+.q-wrap{padding:20px 20px 0;}
+
+/* Пузырь Ирины */
+.irina-ask{display:flex;align-items:flex-start;gap:10px;margin-bottom:18px;}
+.irina-ava{width:36px;height:36px;border-radius:50%;background:var(--rose-soft);border:2px solid var(--sand);flex-shrink:0;overflow:hidden;display:flex;align-items:center;justify-content:center;}
 .irina-ava img{width:100%;height:100%;object-fit:cover;}
-.irina-ava svg{width:18px;height:18px;stroke:var(--rose);fill:none;stroke-width:1.5;}
-.irina-bubble{
-  background:var(--white);border:1px solid var(--sand);
-  border-radius:0 var(--r-md) var(--r-md) var(--r-md);
-  padding:12px 14px;box-shadow:var(--sh-sm);flex:1;
-}
-.irina-name{font-size:10px;font-weight:700;color:var(--rose);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
-.irina-q{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(18px,4vw,22px);font-weight:600;line-height:1.25;color:var(--text);margin-bottom:3px;}
-.irina-hint{font-size:11px;color:var(--text-muted);line-height:1.4;}
+.irina-ava svg{width:15px;height:15px;stroke:var(--rose);fill:none;stroke-width:1.5;}
+.irina-bubble{background:var(--white);border:1px solid var(--sand);border-radius:0 var(--r-md) var(--r-md) var(--r-md);padding:12px 14px;box-shadow:var(--sh-sm);flex:1;}
+.irina-n{font-size:10px;font-weight:700;color:var(--rose);text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px;}
+.irina-q{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(18px,4vw,22px);font-weight:600;line-height:1.25;color:var(--tx);margin-bottom:3px;}
+.irina-hint{font-size:11px;color:var(--tx-muted);line-height:1.4;}
 
-/* === ОТВЕТЫ === */
+/* Варианты */
 .opts{display:flex;flex-direction:column;gap:8px;}
-.opt{
-  background:var(--white);border:1.5px solid var(--sand);
-  border-radius:var(--r-md);padding:13px 16px;
-  text-align:left;cursor:pointer;
-  transition:border-color .18s,background .18s,box-shadow .18s;
-  display:flex;align-items:flex-start;gap:12px;
-  box-shadow:var(--sh-sm);
-}
+.opt{background:var(--white);border:1.5px solid var(--sand);border-radius:var(--r-md);padding:13px 16px;text-align:left;cursor:pointer;transition:border-color .18s,background .18s,box-shadow .18s;display:flex;align-items:flex-start;gap:12px;box-shadow:var(--sh-sm);}
 .opt:hover{border-color:var(--rose);background:var(--rose-pale);box-shadow:var(--sh-md);}
-.opt.sel{border-color:var(--rose);background:var(--rose-soft);box-shadow:var(--sh-md);}
-.opt-check{
-  width:18px;height:18px;border-radius:50%;
-  border:1.5px solid var(--sand-dark);flex-shrink:0;margin-top:2px;
-  transition:all .18s;display:flex;align-items:center;justify-content:center;
-}
+.opt.sel{border-color:var(--rose);background:var(--rose-soft);}
+.opt-check{width:18px;height:18px;border-radius:50%;border:1.5px solid var(--sand-d);flex-shrink:0;margin-top:2px;transition:all .18s;display:flex;align-items:center;justify-content:center;}
 .opt.sel .opt-check{background:var(--rose);border-color:var(--rose);}
-.opt.sel .opt-check::after{content:'';display:block;width:6px;height:6px;border-radius:50%;background:#fff;}
-.opt-txt strong{display:block;font-weight:600;font-size:14px;color:var(--text);line-height:1.3;margin-bottom:2px;}
-.opt-txt span{font-size:12px;color:var(--text-muted);line-height:1.4;}
+.opt.sel .opt-check::after{content:'';display:block;width:5px;height:5px;border-radius:50%;background:#fff;}
+.opt-txt strong{display:block;font-weight:600;font-size:14px;color:var(--tx);line-height:1.3;margin-bottom:2px;}
+.opt-txt span{font-size:12px;color:var(--tx-muted);line-height:1.4;}
 
-/* === КНОПКА НАЗАД === */
-.nav{display:flex;margin-top:14px;}
-.btn-back{color:var(--text-muted);font-size:13px;padding:6px 0;display:flex;align-items:center;gap:5px;transition:color .15s;}
-.btn-back:hover{color:var(--text);}
-.btn-back svg{width:15px;height:15px;stroke:currentColor;fill:none;stroke-width:1.5;}
+.btn-back{color:var(--tx-muted);font-size:12px;padding:8px 0;display:inline-flex;align-items:center;gap:5px;margin-top:12px;transition:color .15s;}
+.btn-back:hover{color:var(--tx);}
+.btn-back svg{width:14px;height:14px;stroke:currentColor;fill:none;stroke-width:2;}
 
-/* === РЕЗУЛЬТАТ === */
-.res-banner{
-  width:100%;height:160px;border-radius:var(--r-lg);
-  background:linear-gradient(135deg,#f5ede9,#e2cdc6);
-  overflow:hidden;margin-bottom:18px;
-  display:flex;align-items:center;justify-content:center;
-}
-.res-banner img{width:100%;height:100%;object-fit:cover;}
-.res-banner-ph{text-align:center;display:flex;flex-direction:column;align-items:center;gap:6px;}
-.res-banner-ph .ph-icon{width:38px;height:38px;border-radius:50%;background:rgba(201,115,106,.1);display:flex;align-items:center;justify-content:center;}
-.res-banner-ph .ph-icon svg{width:17px;height:17px;stroke:var(--rose);fill:none;stroke-width:1.5;}
-.res-banner-ph .lb{font-size:10px;font-weight:700;text-transform:uppercase;letter-spacing:.08em;color:var(--rose);}
-.res-banner-ph .ds{font-size:10px;color:var(--text-muted);max-width:190px;line-height:1.3;}
+/* ═══════════════════════════════════════════
+   РЕЗУЛЬТАТ + ФОРМА
+═══════════════════════════════════════════ */
+.res-wrap{padding:20px;}
 
-.res-tag{display:inline-flex;align-items:center;gap:6px;background:var(--rose-soft);border:1px solid rgba(201,115,106,.25);color:var(--rose-deep);border-radius:50px;padding:5px 12px;font-size:11px;font-weight:600;letter-spacing:.03em;margin-bottom:10px;}
-.res-tag::before{content:'';display:block;width:5px;height:5px;border-radius:50%;background:var(--rose);}
-.res-h{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(19px,4.5vw,24px);font-weight:600;line-height:1.2;margin-bottom:8px;}
-.res-p{font-size:13px;color:var(--text-mid);line-height:1.7;margin-bottom:20px;}
+/* Персонализированный результат */
+.res-type{display:inline-flex;align-items:center;gap:6px;background:var(--rose-soft);border:1px solid rgba(201,115,106,.25);color:var(--rose-d);border-radius:50px;padding:6px 14px;font-size:11px;font-weight:600;letter-spacing:.04em;margin-bottom:10px;}
+.res-type::before{content:'';display:block;width:5px;height:5px;border-radius:50%;background:var(--rose);}
+.res-h{font-family:'Cormorant Garamond',Georgia,serif;font-size:clamp(20px,5vw,26px);font-weight:600;line-height:1.2;margin-bottom:8px;color:var(--tx);}
+.res-p{font-size:13px;color:var(--tx-mid);line-height:1.7;margin-bottom:20px;}
 
-/* === ФОРМА === */
-.cbox{background:var(--white);border-radius:var(--r-lg);padding:20px;border:1px solid var(--sand);box-shadow:var(--sh-md);margin-bottom:16px;}
-.cbox-top{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
-.cbox-ava-ph{width:44px;height:44px;border-radius:50%;background:var(--rose-soft);border:2px solid var(--sand);display:flex;align-items:center;justify-content:center;flex-shrink:0;}
-.cbox-ava-ph svg{width:20px;height:20px;stroke:var(--rose);fill:none;stroke-width:1.5;}
-.cbox-ava{width:44px;height:44px;border-radius:50%;overflow:hidden;border:2px solid var(--sand);flex-shrink:0;}
-.cbox-ava img{width:100%;height:100%;object-fit:cover;}
-.cbox-name{font-size:14px;font-weight:700;color:var(--text);}
-.cbox-says{font-size:12px;color:var(--text-muted);}
-.cbox-div{height:1px;background:var(--sand);margin-bottom:16px;}
-.cbox h3{font-family:'Cormorant Garamond',Georgia,serif;font-size:18px;font-weight:600;margin-bottom:14px;color:var(--text);}
-.inp{width:100%;border:1.5px solid var(--sand);border-radius:var(--r-sm);padding:12px 14px;font-size:14px;font-family:'Inter',sans-serif;margin-bottom:10px;outline:none;transition:border-color .15s,box-shadow .15s;background:var(--surface);color:var(--text);}
-.inp::placeholder{color:var(--text-muted);}
-.inp:focus{border-color:var(--rose);background:var(--white);box-shadow:0 0 0 3px rgba(201,115,106,.1);}
+/* Плашка с подарком — персонализированная */
+.gift-unlock{background:linear-gradient(135deg,#fff8f5,#fdf0ec);border:1.5px solid rgba(201,115,106,.25);border-radius:var(--r-lg);padding:18px;margin-bottom:20px;}
+.gu-label{display:inline-flex;align-items:center;gap:5px;background:var(--rose);color:#fff;border-radius:50px;padding:5px 12px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;}
+.gu-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;font-weight:600;color:var(--tx);line-height:1.25;margin-bottom:6px;}
+.gu-sub{font-size:12px;color:var(--tx-mid);line-height:1.6;}
 
-/* === РАДИО МЕССЕНДЖЕР === */
-.msng-label{font-size:12px;color:var(--text-muted);margin-bottom:8px;}
-.msng-opts{display:flex;gap:8px;margin-bottom:14px;}
-.msng-opt{flex:1;border:1.5px solid var(--sand);border-radius:var(--r-md);padding:10px 12px;cursor:pointer;transition:all .18s;display:flex;align-items:center;gap:8px;background:var(--white);}
+/* Форма */
+.form-box{background:var(--white);border-radius:var(--r-lg);padding:20px;border:1px solid var(--sand);box-shadow:var(--sh-md);}
+.fb-top{display:flex;align-items:center;gap:10px;margin-bottom:14px;}
+.fb-ava{width:42px;height:42px;border-radius:50%;background:var(--rose-soft);border:2px solid var(--sand);display:flex;align-items:center;justify-content:center;flex-shrink:0;overflow:hidden;}
+.fb-ava img{width:100%;height:100%;object-fit:cover;}
+.fb-ava svg{width:18px;height:18px;stroke:var(--rose);fill:none;stroke-width:1.5;}
+.fb-name{font-size:14px;font-weight:700;color:var(--tx);}
+.fb-says{font-size:12px;color:var(--tx-muted);}
+.fb-div{height:1px;background:var(--sand);margin-bottom:16px;}
+.fb-h{font-family:'Cormorant Garamond',Georgia,serif;font-size:17px;font-weight:600;color:var(--tx);margin-bottom:4px;}
+.fb-sub{font-size:12px;color:var(--tx-muted);margin-bottom:16px;line-height:1.5;}
+
+/* Мессенджер */
+.msng-row{display:flex;gap:8px;margin-bottom:16px;}
+.msng-opt{flex:1;border:1.5px solid var(--sand);border-radius:var(--r-md);padding:10px 12px;cursor:pointer;display:flex;align-items:center;gap:7px;background:var(--white);transition:all .18s;}
 .msng-opt:hover{border-color:var(--rose);background:var(--rose-pale);}
 .msng-opt.sel{border-color:var(--rose);background:var(--rose-soft);}
-.msng-opt input{display:none;}
-.msng-dot{width:16px;height:16px;border-radius:50%;border:1.5px solid var(--sand-dark);flex-shrink:0;display:flex;align-items:center;justify-content:center;transition:all .18s;}
+.msng-dot{width:15px;height:15px;border-radius:50%;border:1.5px solid var(--sand-d);flex-shrink:0;transition:all .18s;display:flex;align-items:center;justify-content:center;}
 .msng-opt.sel .msng-dot{background:var(--rose);border-color:var(--rose);}
 .msng-opt.sel .msng-dot::after{content:'';display:block;width:5px;height:5px;border-radius:50%;background:#fff;}
-.msng-icon{width:18px;height:18px;flex-shrink:0;}
-.msng-name{font-size:13px;font-weight:600;color:var(--text);}
+.msng-ico{width:17px;height:17px;flex-shrink:0;}
+.msng-nm{font-size:13px;font-weight:600;color:var(--tx);}
 
-.btn-main{width:100%;background:var(--rose);color:#fff;padding:14px;border-radius:50px;font-size:15px;font-weight:600;cursor:pointer;transition:background .18s,transform .18s,box-shadow .18s;border:none;letter-spacing:.02em;}
-.btn-main:hover{background:var(--rose-deep);transform:translateY(-1px);box-shadow:0 6px 20px rgba(168,88,80,.3);}
-.disclaimer{font-size:11px;color:var(--text-muted);line-height:1.5;margin-top:12px;text-align:center;}
+.inp{width:100%;border:1.5px solid var(--sand);border-radius:var(--r-sm);padding:12px 14px;font-size:14px;font-family:'Inter',sans-serif;margin-bottom:8px;outline:none;transition:border-color .15s,box-shadow .15s;background:var(--bg);color:var(--tx);}
+.inp::placeholder{color:var(--tx-muted);}
+.inp:focus{border-color:var(--rose);background:var(--white);box-shadow:0 0 0 3px rgba(201,115,106,.1);}
+.inp.error{border-color:#e05555;box-shadow:0 0 0 3px rgba(224,85,85,.1);}
+.inp-hint{font-size:11px;color:var(--tx-muted);margin-bottom:12px;padding-left:2px;line-height:1.4;}
+.btn-main{width:100%;background:var(--rose);color:#fff;padding:14px;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;transition:background .18s,transform .18s,box-shadow .18s;border:none;letter-spacing:.02em;margin-bottom:8px;}
+.btn-main:hover{background:var(--rose-d);transform:translateY(-1px);box-shadow:0 6px 20px rgba(168,88,80,.28);}
+.disclaimer{font-size:11px;color:var(--tx-muted);line-height:1.5;text-align:center;}
 
-/* === СПАСИБО === */
-.ty{text-align:center;padding:8px 0 20px;}
-.ty-icon{width:64px;height:64px;border-radius:50%;background:var(--rose-soft);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
-.ty-icon svg{width:28px;height:28px;stroke:var(--rose);fill:none;stroke-width:1.5;}
-.ty h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:600;margin-bottom:8px;}
-.ty-lead{font-size:15px;color:var(--text-mid);margin-bottom:4px;line-height:1.6;}
-.ty-sub{font-size:13px;color:var(--text-muted);margin-bottom:20px;line-height:1.5;}
+/* ═══════════════════════════════════════════
+   СПАСИБО
+═══════════════════════════════════════════ */
+.ty-wrap{padding:20px;}
+.ty{text-align:center;padding:8px 0 16px;}
+.ty-icon{width:62px;height:62px;border-radius:50%;background:var(--rose-soft);display:flex;align-items:center;justify-content:center;margin:0 auto 16px;}
+.ty-icon svg{width:26px;height:26px;stroke:var(--rose);fill:none;stroke-width:2;}
+.ty h2{font-family:'Cormorant Garamond',Georgia,serif;font-size:26px;font-weight:600;margin-bottom:8px;color:var(--tx);}
+.ty-lead{font-size:14px;color:var(--tx-mid);margin-bottom:20px;line-height:1.6;}
 
-.gift-card{background:linear-gradient(135deg,#fff8f6,#fdf0ec);border:1.5px solid rgba(201,115,106,.25);border-radius:var(--r-lg);padding:18px;margin-bottom:18px;text-align:left;}
-.gift-label{display:inline-flex;align-items:center;gap:5px;background:var(--rose);color:#fff;border-radius:50px;padding:5px 12px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;}
-.gift-title{font-family:'Cormorant Garamond',Georgia,serif;font-size:20px;font-weight:600;color:var(--text);margin-bottom:8px;line-height:1.25;}
-.gift-list{list-style:none;margin-bottom:12px;}
-.gift-list li{font-size:13px;color:var(--text-mid);padding:3px 0 3px 18px;position:relative;line-height:1.5;}
-.gift-list li::before{content:'✓';position:absolute;left:0;color:var(--rose);font-weight:700;}
-.gift-from{font-size:12px;color:var(--text-muted);padding-top:10px;border-top:1px solid var(--sand);line-height:1.5;}
-.gift-from strong{color:var(--text-mid);}
+/* Подарок разблокирован */
+.ty-gift{background:linear-gradient(135deg,#fff8f5,#fdf0ec);border:1.5px solid rgba(201,115,106,.25);border-radius:var(--r-lg);padding:18px;margin-bottom:20px;text-align:left;}
+.tg-badge{display:inline-flex;align-items:center;gap:5px;background:var(--rose);color:#fff;border-radius:50px;padding:5px 12px;font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;margin-bottom:10px;}
+.tg-h{font-family:'Cormorant Garamond',Georgia,serif;font-size:19px;font-weight:600;color:var(--tx);line-height:1.25;margin-bottom:6px;}
+.tg-action{font-size:13px;color:var(--tx-mid);line-height:1.6;}
+.tg-action strong{color:var(--tx);}
 
-.btn-msg{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;border-radius:50px;font-size:15px;font-weight:600;cursor:pointer;border:none;transition:all .18s;color:#fff;letter-spacing:.01em;text-decoration:none;margin-bottom:10px;}
-.btn-msg.tele{background:#229ED9;}.btn-msg.tele:hover{background:#1a8ac4;}
-.btn-msg.max{background:#005FF9;}.btn-msg.max:hover{background:#0048cc;}
+.btn-msg{display:flex;align-items:center;justify-content:center;gap:10px;width:100%;padding:14px;border-radius:50px;font-size:15px;font-weight:700;cursor:pointer;border:none;transition:all .18s;color:#fff;text-decoration:none;margin-bottom:10px;}
+.btn-msg.tele{background:#229ED9;}.btn-msg.tele:hover{background:#1a8ac4;transform:translateY(-1px);}
+.btn-msg.max{background:#005FF9;}.btn-msg.max:hover{background:#0048cc;transform:translateY(-1px);}
 .btn-msg svg{width:18px;height:18px;fill:#fff;flex-shrink:0;}
-.ty-note{font-size:11px;color:var(--text-muted);display:flex;align-items:center;justify-content:center;gap:5px;margin-top:4px;}
-.ty-note svg{width:12px;height:12px;stroke:var(--text-muted);fill:none;stroke-width:2;}
+.ty-note{font-size:11px;color:var(--tx-muted);display:flex;align-items:center;justify-content:center;gap:5px;}
+.ty-note svg{width:12px;height:12px;stroke:var(--tx-muted);fill:none;stroke-width:2;}
 
-/* === АДАПТИВ === */
+/* ERID */
+.page-erid{font-size:10px;color:var(--tx-faint);text-align:center;padding:12px 20px 20px;line-height:1.5;}
+
 @media(max-width:400px){
-  :root{--banner:170px;}
-  .irina-q{font-size:17px;}
+  .hero{height:240px;}
+  .intro-body{padding:18px 16px 24px;}
+  .q-wrap,.res-wrap,.ty-wrap{padding:16px 16px 0;}
+  .irina-q{font-size:18px;}
   .opt{padding:11px 13px;}
-  .content-inner{padding:12px 16px 40px;}
 }
 </style>
 </head>
 <body>
 
-<!-- ШАПКА (фиксированная) -->
-<header class="hdr">
-  <div class="logo">Худей<em>Легко</em></div>
-  <div class="erid">Реклама · ERID: 2VtzqxBZkL3</div>
-</header>
+<div class="screen" id="screen">
+<div class="inner">
 
-<!-- БАННЕР ИРИНЫ (фиксированный — не меняется при смене шагов) -->
-<!-- ФОТО #1: Ирина — уверенная, улыбка, светлый фон. Размер: 1200×400px -->
-<div class="banner">
-  <!-- <img src="irina-banner.jpg" alt="Ирина — ведущая ХудейЛегко"> -->
-  <div class="banner-ph">
-    <div class="ph-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
-    <div class="lb">Фото #1 — Ирина, баннер</div>
-    <div class="ds">Уверенная · улыбка · светлый фон · 1200×400px</div>
-  </div>
-</div>
+  <!-- ═══ ШАГ 0 — ПРИВЕТСТВИЕ + ОФФЕР ═══ -->
+  <div class="step on" id="s0">
+    <div class="intro">
 
-<!-- КОНТЕНТ (прокручивается) -->
-<div class="content">
-<div class="content-inner">
-
-  <!-- ПРОГРЕСС -->
-  <div class="prog-wrap">
-    <div class="prog-bar"><div class="prog-fill" id="pf" style="width:0%"></div></div>
-    <div class="prog-dots">
-      <div class="prog-dot active" id="d1"></div>
-      <div class="prog-dot" id="d2"></div>
-      <div class="prog-dot" id="d3"></div>
-    </div>
-  </div>
-
-  <!-- ШАГ 1 -->
-  <div class="step on" id="s1">
-    <div class="irina-ask">
-      <div class="irina-ava">
-        <!-- <img src="irina-avatar.jpg" alt="Ирина"> -->
-        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <!-- Фото Ирины -->
+      <div class="hero">
+        <!-- <img src="irina-hero.jpg" alt="Ирина — эксперт по питанию"> -->
+        <div class="hero-ph">
+          <div class="ph-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="lb">Фото Ирины — баннер</div>
+          <div class="ds">Портрет · уверенная · светлый фон<br>1200×560px</div>
+        </div>
+        <div class="hero-badge">
+          <div class="dot"></div>
+          <span class="bt">Эксперт онлайн</span>
+        </div>
       </div>
-      <div class="irina-bubble">
-        <div class="irina-name">Ирина</div>
-        <div class="irina-q">Как ты обычно начинаешь менять питание?</div>
-        <div class="irina-hint">Расскажи — я подберу подходящий формат</div>
+
+      <div class="intro-body">
+        <div class="erid-line">Реклама · ERID: 2VtzqxBZkL3</div>
+
+        <!-- Кто я -->
+        <div class="intro-name">
+          <div class="intro-ava"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div class="intro-who">
+            <strong>Привет, я Ирина 👋</strong>
+            <span>Эксперт по питанию · 7 лет практики · 800+ учениц</span>
+          </div>
+        </div>
+
+        <!-- Микро-история -->
+        <div class="intro-story">
+          Я помогаю женщинам худеть <em>без жёстких диет и подсчёта калорий</em> — через понимание своего типа питания. Когда знаешь, <em>как работает именно твоё тело</em>, снижение веса становится естественным процессом, а не борьбой.
+        </div>
+
+        <!-- ОФФЕР — подарок -->
+        <div class="gift-teaser">
+          <div class="gt-top">
+            <div class="gt-icon">🎁</div>
+            <div>
+              <div class="gt-label">Бесплатно для тебя</div>
+              <div class="gt-name">Меню на 3 дня под твой тип питания</div>
+            </div>
+          </div>
+          <div class="gt-desc">Ответь на 3 вопроса — я определю твой тип и пришлю <strong>готовое меню лично</strong> в Telegram или MAX. Без регистраций и платёжек.</div>
+          <div class="gt-items">
+            <div class="gt-item">Завтрак, обед и ужин — уже составлены</div>
+            <div class="gt-item">Простые продукты, до 30 минут на готовку</div>
+            <div class="gt-item">Без голода и жёстких запретов</div>
+          </div>
+        </div>
+
+        <!-- CTA -->
+        <button class="btn-cta" onclick="startQuiz()">
+          <svg viewBox="0 0 24 24"><polyline points="9 18 15 12 9 6"/></svg>
+          Узнать свой тип питания
+        </button>
+        <div class="intro-sub">3 вопроса · 1 минута · бесплатно</div>
       </div>
-    </div>
-    <div class="opts">
-      <button class="opt" onclick="nx(this,'s1','s2','strict')">
-        <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Начинаю строго — потом срываюсь</strong><span>Держусь какое-то время, но не до конца</span></div>
-      </button>
-      <button class="opt" onclick="nx(this,'s1','s2','couple')">
-        <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Пробовала несколько раз — без устойчивого результата</strong><span>Что-то менялось, но закрепить не получалось</span></div>
-      </button>
-      <button class="opt" onclick="nx(this,'s1','s2','first')">
-        <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Хочу начать системно — впервые по-настоящему</strong><span>Раньше не пробовала или только поверхностно</span></div>
-      </button>
-      <button class="opt" onclick="nx(this,'s1','s2','returned')">
-        <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Был хороший результат, но я вернулась к прежнему</strong><span>Хочу выстроить устойчивую привычку</span></div>
-      </button>
+
     </div>
   </div>
 
-  <!-- ШАГ 2 -->
+  <!-- ═══ ШАПКА КВИЗА (sticky, появляется на шагах 1–3) ═══ -->
+  <div class="quiz-hdr" id="quiz-hdr">
+    <div class="qh-logo">Худей<em>Легко</em></div>
+    <div class="qh-prog">
+      <div class="prog-bar"><div class="prog-fill" id="pf" style="width:0%"></div></div>
+      <div class="prog-label" id="pl">Вопрос 1 из 3</div>
+    </div>
+  </div>
+
+  <!-- ═══ ШАГ 1 ═══ -->
+  <div class="step" id="s1">
+    <div class="q-wrap">
+      <div class="irina-ask">
+        <div class="irina-ava"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="irina-bubble">
+          <div class="irina-n">Ирина</div>
+          <div class="irina-q">Как ты обычно начинаешь менять питание?</div>
+          <div class="irina-hint">Расскажи — так я точнее подберу меню</div>
+        </div>
+      </div>
+      <div class="opts">
+        <button class="opt" onclick="nx(this,'s1','s2','strict')">
+          <div class="opt-check"></div>
+          <div class="opt-txt"><strong>Начинаю строго — потом срываюсь</strong><span>Держусь, но в итоге возвращаюсь к старому</span></div>
+        </button>
+        <button class="opt" onclick="nx(this,'s1','s2','couple')">
+          <div class="opt-check"></div>
+          <div class="opt-txt"><strong>Пробовала несколько раз — без устойчивого результата</strong><span>Что-то менялось, но закрепить не выходило</span></div>
+        </button>
+        <button class="opt" onclick="nx(this,'s1','s2','first')">
+          <div class="opt-check"></div>
+          <div class="opt-txt"><strong>Хочу начать системно — впервые серьёзно</strong><span>Раньше пробовала лишь поверхностно</span></div>
+        </button>
+        <button class="opt" onclick="nx(this,'s1','s2','returned')">
+          <div class="opt-check"></div>
+          <div class="opt-txt"><strong>Был хороший результат, но вернулась к прежнему</strong><span>Хочу выстроить устойчивую привычку</span></div>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ═══ ШАГ 2 ═══ -->
   <div class="step" id="s2">
-    <div class="irina-ask">
-      <div class="irina-ava">
-        <!-- <img src="irina-avatar.jpg" alt="Ирина"> -->
-        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <div class="q-wrap">
+      <div class="irina-ask">
+        <div class="irina-ava"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="irina-bubble">
+          <div class="irina-n">Ирина</div>
+          <div class="irina-q">Что чаще всего мешает держаться режима?</div>
+          <div class="irina-hint">Одна причина — самая главная для тебя</div>
+        </div>
       </div>
-      <div class="irina-bubble">
-        <div class="irina-name">Ирина</div>
-        <div class="irina-q">Что чаще всего мешает придерживаться режима?</div>
-        <div class="irina-hint">Одна причина — самая главная</div>
+      <div class="opts">
+        <button class="opt" onclick="nx(this,'s2','s3','food')">
+          <div class="opt-check"></div>
+          <div class="opt-txt"><strong>Срываюсь вечером — не хватает сил</strong><span>Днём хорошо, но к вечеру тянет на лишнее</span></div>
+        </button>
+        <button class="opt" onclick="nx(this,'s2','s3','time')">
+          <div class="opt-check"></div>
+          <div class="opt-txt"><strong>Нет времени на планирование и готовку</strong><span>Жизнь загружена — питание уходит на второй план</span></div>
+        </button>
+        <button class="opt" onclick="nx(this,'s2','s3','alone')">
+          <div class="opt-check"></div>
+          <div class="opt-txt"><strong>В одиночку теряю настрой</strong><span>Без поддержки мотивация гаснет быстро</span></div>
+        </button>
+        <button class="opt" onclick="nx(this,'s2','s3','confused')">
+          <div class="opt-check"></div>
+          <div class="opt-txt"><strong>Не понимаю, что работает именно для меня</strong><span>Советов много — непонятно с чего начать</span></div>
+        </button>
       </div>
-    </div>
-    <div class="opts">
-      <button class="opt" onclick="nx(this,'s2','s3','food')">
-        <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Срываюсь вечером — не хватает сил держаться</strong><span>Днём всё хорошо, но к вечеру тянет на лишнее</span></div>
-      </button>
-      <button class="opt" onclick="nx(this,'s2','s3','time')">
-        <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Нет времени на планирование и готовку</strong><span>Жизнь загружена — питание уходит на второй план</span></div>
-      </button>
-      <button class="opt" onclick="nx(this,'s2','s3','alone')">
-        <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Трудно без поддержки — в одиночку теряю настрой</strong><span>Когда нет окружения, мотивация быстро гаснет</span></div>
-      </button>
-      <button class="opt" onclick="nx(this,'s2','s3','confused')">
-        <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Не понимаю, что работает именно для меня</strong><span>Столько советов — непонятно с чего начать</span></div>
-      </button>
-    </div>
-    <div class="nav">
-      <button class="btn-back" onclick="bk('s2','s1')">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Назад
-      </button>
+      <button class="btn-back" onclick="bk('s2','s1')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Назад</button>
     </div>
   </div>
 
-  <!-- ШАГ 3 -->
+  <!-- ═══ ШАГ 3 ═══ -->
   <div class="step" id="s3">
-    <div class="irina-ask">
-      <div class="irina-ava">
-        <!-- <img src="irina-avatar.jpg" alt="Ирина"> -->
-        <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+    <div class="q-wrap">
+      <div class="irina-ask">
+        <div class="irina-ava"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+        <div class="irina-bubble">
+          <div class="irina-n">Ирина</div>
+          <div class="irina-q">Какое изменение через месяц тебя порадует больше всего?</div>
+          <div class="irina-hint">Именно это станет основой твоего меню</div>
+        </div>
       </div>
-      <div class="irina-bubble">
-        <div class="irina-name">Ирина</div>
-        <div class="irina-q">Какое изменение было бы для тебя самым значимым?</div>
-        <div class="irina-hint">Представь — через месяц смотришь на результат</div>
+      <div class="opts">
+        <button class="opt" onclick="nx(this,'s3','sr','dress')">
+          <div class="opt-check"></div>
+          <div class="opt-txt"><strong>Снова ношу одежду, которую давно отложила</strong><span>Та самая вещь, которая ждёт в шкафу</span></div>
+        </button>
+        <button class="opt" onclick="nx(this,'s3','sr','weight')">
+          <div class="opt-check"></div>
+          <div class="opt-txt"><strong>Вижу реальный результат на весах</strong><span>Конкретные цифры, замеры</span></div>
+        </button>
+        <button class="opt" onclick="nx(this,'s3','sr','mind')">
+          <div class="opt-check"></div>
+          <div class="opt-txt"><strong>Перестала думать о запретах и срывах</strong><span>Спокойное, комфортное отношение к еде</span></div>
+        </button>
+        <button class="opt" onclick="nx(this,'s3','sr','habit')">
+          <div class="opt-check"></div>
+          <div class="opt-txt"><strong>Выстроила привычку и держу результат</strong><span>Не разовый эффект, а образ жизни</span></div>
+        </button>
       </div>
-    </div>
-    <div class="opts">
-      <button class="opt" onclick="nx(this,'s3','sr','dress')">
-        <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Снова ношу одежду, которую давно отложила</strong><span>Та самая вещь, которая ждёт в шкафу</span></div>
-      </button>
-      <button class="opt" onclick="nx(this,'s3','sr','weight')">
-        <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Вижу реальный результат на весах</strong><span>Замеры, цифры — конкретные изменения</span></div>
-      </button>
-      <button class="opt" onclick="nx(this,'s3','sr','mind')">
-        <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Перестала постоянно думать о еде и запретах</strong><span>Спокойное, комфортное отношение к питанию</span></div>
-      </button>
-      <button class="opt" onclick="nx(this,'s3','sr','habit')">
-        <div class="opt-check"></div>
-        <div class="opt-txt"><strong>Выстроила привычку и сохраняю результат</strong><span>Не разовый эффект, а устойчивый образ жизни</span></div>
-      </button>
-    </div>
-    <div class="nav">
-      <button class="btn-back" onclick="bk('s3','s2')">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Назад
-      </button>
+      <button class="btn-back" onclick="bk('s3','s2')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Назад</button>
     </div>
   </div>
 
-  <!-- РЕЗУЛЬТАТ -->
+  <!-- ═══ РЕЗУЛЬТАТ + ФОРМА ═══ -->
   <div class="step" id="sr">
-    <!-- ФОТО #2: участницы группы, позитив, без сравнения фигур, 1200×320px -->
-    <div class="res-banner">
-      <!-- <img src="group.jpg" alt="участницы марафона"> -->
-      <div class="res-banner-ph">
-        <div class="ph-icon"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg></div>
-        <div class="lb">Фото #2 — участницы</div>
-        <div class="ds">Позитив · без сравнения фигур · 1200×320px</div>
+    <div class="res-wrap">
+      <!-- Персонализированный вывод -->
+      <span class="res-type" id="res-type">Тип определён</span>
+      <div class="res-h" id="res-h">Твой тип питания найден</div>
+      <div class="res-p" id="res-p"></div>
+
+      <!-- Подарок -->
+      <div class="gift-unlock">
+        <div class="gu-label">🎁 Подарок разблокирован</div>
+        <div class="gu-title" id="gift-title">Меню на 3 дня — под твой тип</div>
+        <div class="gu-sub">Оставь контакт — Ирина пришлёт меню лично. Без спама.</div>
       </div>
-    </div>
 
-    <div style="margin-bottom:18px;">
-      <span class="res-tag" id="res-badge">Подходящий формат найден</span>
-      <div class="res-h" id="res-h">Для тебя есть решение</div>
-      <div class="res-p" id="res-p">Марафон с Ириной — структурированная программа питания с поддержкой каждый день.</div>
-    </div>
-
-    <!-- ФОРМА -->
-    <div class="cbox">
-      <div class="cbox-top">
-        <!-- <div class="cbox-ava"><img src="irina-avatar.jpg" alt="Ирина"></div> -->
-        <div class="cbox-ava-ph">
-          <svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+      <!-- Форма -->
+      <div class="form-box">
+        <div class="fb-top">
+          <div class="fb-ava"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
+          <div><div class="fb-name">Ирина</div><div class="fb-says">Жду тебя ✨</div></div>
         </div>
-        <div>
-          <div class="cbox-name">Ирина</div>
-          <div class="cbox-says">Жду тебя в группе ✨</div>
+        <div class="fb-div"></div>
+        <div class="fb-h">Куда отправить меню?</div>
+        <div class="fb-sub">Выбери мессенджер, оставь имя и контакт</div>
+
+        <!-- Мессенджер -->
+        <div class="msng-row">
+          <label class="msng-opt sel" id="mo-tg" onclick="selMsng('tg',this)">
+            <div class="msng-dot"></div>
+            <svg class="msng-ico" viewBox="0 0 24 24" fill="#229ED9"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.89 8.22l-1.97 9.28c-.14.66-.54.82-1.08.51l-3-2.21-1.45 1.39c-.16.16-.3.3-.6.3l.21-3.05 5.56-5.02c.24-.21-.05-.33-.37-.12L7.48 14.06l-2.95-.92c-.64-.2-.66-.64.13-.96L17.22 7.72c.54-.2 1 .13.67.5z"/></svg>
+            <span class="msng-nm">Telegram</span>
+          </label>
+          <label class="msng-opt" id="mo-max" onclick="selMsng('max',this)">
+            <div class="msng-dot"></div>
+            <svg class="msng-ico" viewBox="0 0 24 24" fill="#005FF9"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 13H11V9h2v6zm0-8H11V5h2v2z"/></svg>
+            <span class="msng-nm">MAX</span>
+          </label>
         </div>
-      </div>
-      <div class="cbox-div"></div>
-      <h3>Оставь контакт — я напишу тебе лично</h3>
 
-      <input class="inp" type="text" placeholder="Твоё имя" id="inp-name">
-      <input class="inp" type="tel" placeholder="Телефон или @telegram" id="inp-contact">
+        <input class="inp" type="text" placeholder="Твоё имя" id="inp-name">
+        <input class="inp" type="text" placeholder="@username в Telegram" id="inp-contact" autocomplete="off">
+        <div class="inp-hint" id="inp-hint">Напиши @username — я найду тебя в Telegram</div>
 
-      <div class="msng-label">Где тебе удобнее получить ответ?</div>
-      <div class="msng-opts">
-        <label class="msng-opt sel" id="mo-tg" onclick="selMsng('tg',this)">
-          <div class="msng-dot"></div>
-          <svg class="msng-icon" viewBox="0 0 24 24" fill="#229ED9"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.89 8.22l-1.97 9.28c-.14.66-.54.82-1.08.51l-3-2.21-1.45 1.39c-.16.16-.3.3-.6.3l.21-3.05 5.56-5.02c.24-.21-.05-.33-.37-.12L7.48 14.06l-2.95-.92c-.64-.2-.66-.64.13-.96L17.22 7.72c.54-.2 1 .13.67.5z"/></svg>
-          <span class="msng-name">Telegram</span>
-        </label>
-        <label class="msng-opt" id="mo-max" onclick="selMsng('max',this)">
-          <div class="msng-dot"></div>
-          <svg class="msng-icon" viewBox="0 0 24 24" fill="#005FF9"><path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 13H11V9h2v6zm0-8H11V5h2v2z"/></svg>
-          <span class="msng-name">MAX</span>
-        </label>
+        <button class="btn-main" onclick="showTY()">Получить меню →</button>
+        <div class="disclaimer">Результат индивидуален. Программа не является медицинской услугой.</div>
       </div>
 
-      <button class="btn-main" onclick="showTY()">Записаться →</button>
-      <div class="disclaimer">Результат индивидуален. Программа не является медицинской услугой.</div>
-    </div>
-    <div class="nav" style="justify-content:center;">
-      <button class="btn-back" onclick="bk('sr','s3')">
-        <svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Назад
-      </button>
+      <div style="margin-top:12px;">
+        <button class="btn-back" onclick="bk('sr','s3')"><svg viewBox="0 0 24 24"><polyline points="15 18 9 12 15 6"/></svg>Назад</button>
+      </div>
     </div>
   </div>
 
-  <!-- СПАСИБО -->
+  <!-- ═══ СПАСИБО ═══ -->
   <div class="step" id="sty">
-    <div class="ty">
-      <div class="ty-icon">
-        <svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg>
-      </div>
-      <h2>Заявка принята!</h2>
-      <p class="ty-lead">Я получила заявку и напишу тебе лично до старта.</p>
-      <p class="ty-sub">А пока — держи подарок от меня&nbsp;🎁</p>
+    <div class="ty-wrap">
+      <div class="ty">
+        <div class="ty-icon"><svg viewBox="0 0 24 24"><polyline points="20 6 9 17 4 12"/></svg></div>
+        <h2>Отлично, я жду тебя!</h2>
+        <p class="ty-lead">Напишу лично до <strong>15 июня</strong> — старт группы совсем скоро, <strong>40 мест</strong>.</p>
 
-      <div class="gift-card">
-        <div class="gift-label">🎁 Подарок для тебя</div>
-        <div class="gift-title">Меню на 3 дня — бесплатно</div>
-        <ul class="gift-list">
-          <li>Завтрак, обед и ужин — уже готово</li>
-          <li>Простые продукты, 30 минут на готовку</li>
-          <li>Без голода и жёстких запретов</li>
-        </ul>
-        <div class="gift-from">Напиши мне — <strong>я пришлю меню прямо в чат</strong>&nbsp;👇</div>
-      </div>
+        <div class="ty-gift">
+          <div class="tg-badge">🎁 Забрать меню прямо сейчас</div>
+          <div class="tg-h">Меню на 3 дня — бесплатно</div>
+          <div class="tg-action">Подпишись на канал и напиши мне слово <strong>«меню»</strong> — пришлю лично в чат&nbsp;👇</div>
+        </div>
 
-      <a id="ty-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn-msg tele" onclick="trackMsng()">
-        <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.89 8.22l-1.97 9.28c-.14.66-.54.82-1.08.51l-3-2.21-1.45 1.39c-.16.16-.3.3-.6.3l.21-3.05 5.56-5.02c.24-.21-.05-.33-.37-.12L7.48 14.06l-2.95-.92c-.64-.2-.66-.64.13-.96L17.22 7.72c.54-.2 1 .13.67.5z"/></svg>
-        <span id="ty-btn-txt">Написать в Telegram</span>
-      </a>
+        <a id="ty-btn" href="#" target="_blank" rel="noopener noreferrer" class="btn-msg tele" onclick="trackMsng()">
+          <svg viewBox="0 0 24 24" fill="#fff"><path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.89 8.22l-1.97 9.28c-.14.66-.54.82-1.08.51l-3-2.21-1.45 1.39c-.16.16-.3.3-.6.3l.21-3.05 5.56-5.02c.24-.21-.05-.33-.37-.12L7.48 14.06l-2.95-.92c-.64-.2-.66-.64.13-.96L17.22 7.72c.54-.2 1 .13.67.5z"/></svg>
+          <span id="ty-btn-txt">Написать в Telegram</span>
+        </a>
 
-      <div class="ty-note">
-        <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-        Спама не будет. Только меню и материалы программы.
+        <div class="ty-note">
+          <svg viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+          Только меню и материалы старта. Никакого спама.
+        </div>
       </div>
     </div>
   </div>
 
-</div>
-</div><!-- /content -->
+  <div class="page-erid">Реклама · ERID: 2VtzqxBZkL3 · Ограничения и противопоказания уточняйте у специалиста.</div>
+
+</div><!-- .inner -->
+</div><!-- .screen -->
 
 <script>
-var ans = {q1:'', q2:'', msng:'tg'};
-var step = 1;
+var ans = {q1:'', q2:'', q3:'', msng:'tg'};
+var step = 0;
 
-// UTM из URL
 var utm = (function(){
   var p = new URLSearchParams(window.location.search);
   var keys = ['utm_source','utm_medium','utm_campaign','utm_content','utm_term'];
@@ -478,112 +493,161 @@ var utm = (function(){
   return parts.length ? parts.join(' | ') : 'прямой заход';
 })();
 
-// Прогресс
-function up(){
-  var p = Math.min(((step-1)/3)*100, 100);
-  document.getElementById('pf').style.width = p + '%';
-  ['d1','d2','d3'].forEach(function(id, i){
-    var d = document.getElementById(id);
-    d.className = 'prog-dot';
-    if(i+1 < step) d.classList.add('done');
-    else if(i+1 === step) d.classList.add('active');
-  });
+// ─── ПРОГРЕСС ───
+function updProgress(){
+  var hdr = document.getElementById('quiz-hdr');
+  if(step >= 1 && step <= 3){
+    hdr.classList.add('on');
+    var pct = ((step-1)/3)*100;
+    document.getElementById('pf').style.width = pct + '%';
+    document.getElementById('pl').textContent = 'Вопрос ' + step + ' из 3';
+  } else {
+    hdr.classList.remove('on');
+  }
 }
 
-// Следующий шаг
+// ─── СТАРТ КВИЗА ───
+function startQuiz(){
+  document.getElementById('s0').classList.remove('on');
+  step = 1;
+  updProgress();
+  document.getElementById('s1').classList.add('on');
+  document.getElementById('screen').scrollTop = 0;
+  if(typeof ym !== 'undefined') ym(109575297,'reachGoal','quiz_start');
+}
+
+// ─── ПЕРЕХОД ───
 function nx(btn, cur, nxt, val){
   if(cur === 's1') ans.q1 = val;
   if(cur === 's2') ans.q2 = val;
+  if(cur === 's3') ans.q3 = val;
   document.querySelectorAll('#'+cur+' .opt').forEach(function(b){ b.classList.remove('sel'); });
   btn.classList.add('sel');
   setTimeout(function(){
     document.getElementById(cur).classList.remove('on');
     if(nxt === 's2') step = 2;
     else if(nxt === 's3') step = 3;
-    else if(nxt === 'sr'){ step = 4; setResult(); }
-    up();
+    else if(nxt === 'sr'){ step = 4; buildResult(); }
+    updProgress();
     document.getElementById(nxt).classList.add('on');
-    // Скролл наверх контентного блока
-    document.querySelector('.content').scrollTop = 0;
+    document.getElementById('screen').scrollTop = 0;
   }, 280);
 }
 
-// Назад
+// ─── НАЗАД ───
 function bk(cur, prev){
   document.getElementById(cur).classList.remove('on');
-  if(prev === 's1') step = 1;
+  if(prev === 's0') step = 0;
+  else if(prev === 's1') step = 1;
   else if(prev === 's2') step = 2;
   else if(prev === 's3') step = 3;
-  up();
+  updProgress();
   document.getElementById(prev).classList.add('on');
-  document.querySelector('.content').scrollTop = 0;
+  document.getElementById('screen').scrollTop = 0;
 }
 
-// Выбор мессенджера
+// ─── РЕЗУЛЬТАТ (персонализированный) ───
+function buildResult(){
+  var typeMap = {
+    food: {type:'«Вечерний» тип', h:'Срывы — это не слабость, это отсутствие плана', p:'Твой паттерн: днём держишься, вечером организм берёт своё. Меню на 3 дня для твоего типа строится так, чтобы к вечеру ты была сыта и без срыва — без запретов и силы воли.'},
+    time: {type:'«Занятой» тип', h:'Когда всё уже готово — питание перестаёт отнимать время', p:'Твой барьер — не мотивация, а логистика. Меню составлено под ритм занятого дня: простые продукты, минимум готовки, список на неделю уже включён.'},
+    alone: {type:'«Социальный» тип', h:'Рядом с теми, кто идёт к той же цели — двигаться легче', p:'Для твоего типа среда важнее любой диеты. Меню на 3 дня — это точка входа. Дальше ты попадёшь в закрытую группу, где 40 женщин идут к той же цели.'},
+    confused: {type:'«Системный» тип', h:'Когда есть конкретный план — не нужна сила воли', p:'Ты ищешь не очередной совет, а систему под себя. Меню на 3 дня даёт тебе первый практический блок: что есть, когда и почему — без противоречий и лишней теории.'}
+  };
+  var t = typeMap[ans.q2] || typeMap['confused'];
+  document.getElementById('res-type').textContent = t.type;
+  document.getElementById('res-h').textContent = t.h;
+  document.getElementById('res-p').textContent = t.p;
+  document.getElementById('gift-title').textContent = 'Меню на 3 дня для типа ' + t.type;
+  if(typeof ym !== 'undefined') ym(109575297,'reachGoal','quiz_complete');
+}
+
+// ─── ВЫБОР МЕССЕНДЖЕРА ───
 function selMsng(val, el){
   ans.msng = val;
   document.querySelectorAll('.msng-opt').forEach(function(o){ o.classList.remove('sel'); });
   el.classList.add('sel');
-}
-
-// Персонализация результата
-function setResult(){
-  var b = document.getElementById('res-badge');
-  var h = document.getElementById('res-h');
-  var p = document.getElementById('res-p');
-  if(ans.q2 === 'food'){
-    b.textContent = 'Тебе нужна структура, а не сила воли';
-    h.textContent = 'Вечерние срывы — это отсутствие плана, не слабость';
-    p.textContent = 'Когда нет чёткого меню на день, к вечеру организм сам ищет компенсацию. В моей группе каждый день есть готовый план — это убирает постоянный выбор и снижает нагрузку на самоконтроль.';
-  } else if(ans.q2 === 'time'){
-    b.textContent = 'Тебе нужно готовое решение без лишних усилий';
-    h.textContent = 'Когда всё уже готово — питание перестаёт отнимать время';
-    p.textContent = 'Меню на каждый день, список продуктов на неделю — всё в одном месте. Не нужно ничего придумывать или считать. Я устроила программу так, чтобы она встраивалась в занятой ритм жизни.';
-  } else if(ans.q2 === 'alone'){
-    b.textContent = 'Тебе нужна поддержка — ты не одна';
-    h.textContent = 'Рядом с теми, кто идёт к той же цели — двигаться легче';
-    p.textContent = 'В моей закрытой группе собираются женщины с похожим запросом. Общий чат, ежедневная обратная связь и моё живое присутствие создают среду, в которой продолжать становится естественным.';
+  var inp = document.getElementById('inp-contact');
+  var hint = document.getElementById('inp-hint');
+  inp.classList.remove('error');
+  inp.value = '';
+  if(val === 'tg'){
+    inp.type = 'text';
+    inp.placeholder = '@username в Telegram';
+    hint.textContent = 'Напиши @username — я найду тебя в Telegram';
   } else {
-    b.textContent = 'Тебе нужен конкретный план, а не советы';
-    h.textContent = 'Когда есть система — не нужна сила воли';
-    p.textContent = 'В программе всё структурировано: что есть, когда, сколько. Не нужно разбираться в противоречивых советах — есть конкретный план на 28 дней, который уже сработал у десятков участниц.';
+    inp.type = 'tel';
+    inp.placeholder = '+7 (900) 000-00-00';
+    hint.textContent = 'Телефон для связи через MAX';
   }
-  if(typeof ym !== 'undefined') ym(109575297,'reachGoal','quiz_complete');
 }
 
-// Отправка формы
+// ─── НОРМАЛИЗАЦИЯ TG ───
+function normContact(raw){
+  if(ans.msng === 'tg'){
+    var v = raw.trim();
+    if(/^\+?[\d\s\-\(\)]{7,}$/.test(v)) return v + ' ⚠️ похоже на телефон';
+    v = v.replace(/^@+/, '');
+    return '@' + v;
+  }
+  return raw.trim();
+}
+
+function validateContact(raw){
+  var v = raw.trim();
+  if(!v) return 'Заполни поле контакта';
+  if(ans.msng === 'tg'){
+    if(/^\+?[\d\s\-\(\)]{7,}$/.test(v)) return null;
+    var clean = v.replace(/^@+/, '');
+    if(clean.length < 3) return 'Слишком короткий username';
+    if(/\s/.test(clean)) return 'Username не может содержать пробелы';
+  } else {
+    var digits = v.replace(/\D/g,'');
+    if(digits.length < 10) return 'Введи корректный номер телефона';
+  }
+  return null;
+}
+
+// ─── ОТПРАВКА ───
 function showTY(){
   var name = document.getElementById('inp-name').value.trim();
-  var contact = document.getElementById('inp-contact').value.trim();
-  if(!name || !contact){ alert('Пожалуйста, заполни имя и контакт'); return; }
+  var rawContact = document.getElementById('inp-contact').value;
+  var inpEl = document.getElementById('inp-contact');
 
+  if(!name){ alert('Пожалуйста, заполни имя'); return; }
+  var err = validateContact(rawContact);
+  if(err){ inpEl.classList.add('error'); inpEl.focus(); alert(err); return; }
+  inpEl.classList.remove('error');
+
+  var contact = normContact(rawContact);
   if(typeof ym !== 'undefined') ym(109575297,'reachGoal','form_submit');
 
-  // Настройка кнопки на спасибо под нужный мессенджер
+  // Кнопка на спасибо
   var btn = document.getElementById('ty-btn');
   var btnTxt = document.getElementById('ty-btn-txt');
   if(ans.msng === 'max'){
-    btn.href = 'https://max.ru/СЮДА_ССЫЛКА';
+    btn.href = 'https://vk.me/СЮДА_ССЫЛКА_MAX';
     btn.className = 'btn-msg max';
     btn.querySelector('svg').innerHTML = '<path d="M12 2C6.477 2 2 6.477 2 12s4.477 10 10 10 10-4.477 10-10S17.523 2 12 2zm1 13H11V9h2v6zm0-8H11V5h2v2z"/>';
     btnTxt.textContent = 'Написать в MAX';
   } else {
-    btn.href = 'https://t.me/СЮДА_USERNAME';
+    btn.href = 'https://t.me/СЮДА_USERNAME_ИРИНЫ';
     btn.className = 'btn-msg tele';
     btn.querySelector('svg').innerHTML = '<path d="M12 0C5.37 0 0 5.37 0 12s5.37 12 12 12 12-5.37 12-12S18.63 0 12 0zm5.89 8.22l-1.97 9.28c-.14.66-.54.82-1.08.51l-3-2.21-1.45 1.39c-.16.16-.3.3-.6.3l.21-3.05 5.56-5.02c.24-.21-.05-.33-.37-.12L7.48 14.06l-2.95-.92c-.64-.2-.66-.64.13-.96L17.22 7.72c.54-.2 1 .13.67.5z"/>';
     btnTxt.textContent = 'Написать в Telegram';
   }
 
-  // Telegram-бот уведомление
+  // Бот
   var BOT_TOKEN = 'YOUR_BOT_TOKEN';
   var CHAT_ID = 'YOUR_CHAT_ID';
   var barrierMap = {food:'вечерние срывы', time:'нет времени', alone:'нет поддержки', confused:'непонятно с чего начать'};
-  var approachMap = {strict:'начинает строго — срывается', couple:'несколько попыток', first:'впервые серьёзно', returned:'был результат, вернулась'};
+  var goalMap = {dress:'влезть в одежду', weight:'результат на весах', mind:'спокойствие к еде', habit:'устойчивая привычка'};
+  var approachMap = {strict:'строго→срыв', couple:'несколько попыток', first:'впервые серьёзно', returned:'был результат→вернулась'};
   var msg = '🔔 Новая заявка!\n'
     + '👤 Имя: ' + name + '\n'
-    + '📱 Контакт: ' + contact + '\n'
-    + '💬 Мессенджер: ' + (ans.msng === 'max' ? 'MAX' : 'Telegram') + '\n'
+    + '📱 ' + (ans.msng === 'max' ? 'Телефон (MAX)' : 'Telegram') + ': ' + contact + '\n'
     + '🚧 Барьер: ' + (barrierMap[ans.q2] || '—') + '\n'
+    + '🎯 Цель: ' + (goalMap[ans.q3] || '—') + '\n'
     + '📋 Подход: ' + (approachMap[ans.q1] || '—') + '\n'
     + '📊 UTM: ' + utm;
 
@@ -596,27 +660,19 @@ function showTY(){
   }
 
   document.getElementById('sr').classList.remove('on');
+  step = 5;
+  updProgress();
   document.getElementById('sty').classList.add('on');
-  document.querySelector('.content').scrollTop = 0;
+  document.getElementById('screen').scrollTop = 0;
 }
 
-// Цель Метрики на кнопке спасибо
+// ─── ТРЕКИНГ КЛИКА ───
 function trackMsng(){
-  var goal = ans.msng === 'max' ? 'max_click' : 'messenger_click';
-  if(typeof ym !== 'undefined') ym(109575297,'reachGoal', goal);
+  if(typeof ym !== 'undefined') ym(109575297,'reachGoal','messenger_click');
+  if(ans.msng === 'max'){
+    if(typeof ym !== 'undefined') ym(109575297,'reachGoal','max_click');
+  }
 }
-
-// quiz_start при первом ответе
-(function(){
-  var fired = false;
-  document.addEventListener('click', function(e){
-    if(fired) return;
-    if(e.target.closest('#s1 .opt')){
-      fired = true;
-      if(typeof ym !== 'undefined') ym(109575297,'reachGoal','quiz_start');
-    }
-  });
-})();
 </script>
 </body>
 </html>
